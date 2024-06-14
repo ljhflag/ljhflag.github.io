@@ -180,7 +180,7 @@
 <meta property="og:image" content="https://gitee.com/dvvss/images/raw/master/imags/image-20240223112120772.png">
 <meta property="og:image" content="https://gitee.com/dvvss/images/raw/master/imags/image-20240223112410077.png">
 <meta property="article:published_time" content="2024-04-21T03:40:24.327Z">
-<meta property="article:modified_time" content="2024-06-14T12:03:58.774Z">
+<meta property="article:modified_time" content="2024-06-14T12:20:38.450Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/dvvss/images/raw/master/imags/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-01-23%20141022.png">
@@ -931,7 +931,7 @@
 <h2 id="十、XSS-DOM"><a href="#十、XSS-DOM" class="headerlink" title="十、XSS (DOM)"></a>十、XSS (DOM)</h2><p>DOM—based XSS漏洞是基于文档对象模型的一种漏洞。DOM是一个与平台、编程语言无关的接口，它允许程序或脚本动态地访问和更新文档内容、结构和样式，处理后的结果能够成为显示页面的一部分。DOM中有很多对象，其中一些是用户可以操纵的，如uRI，location，refelTer等。客户端的脚本程序可以通过DOM动态地检查和修改页面内容，它不依赖于提交数据到服务器端，而从客户端获得DOM中的数据在本地执行，如果DOM中的数据没有经过严格确认，就会产生DOM—based XSS漏洞</p>
 <h3 id="1-Low-9"><a href="#1-Low-9" class="headerlink" title="1.Low"></a>1.Low</h3><p><img src="https://gitee.com/dvvss/images/raw/master/imags/image-20240222172038704.png" srcset="/img/loading.gif" lazyload alt="image-20240222172038704"></p>
 <p>源代码显示不存在任何保护</p>
-<p>搞个弹窗试一哈     payload:   ?default&#x3D;<script>alert(6)</script></p>
+<p>搞个弹窗试一哈     payload:   ?default&#x3D;<script>alert("糟糕露出鸡脚了！！！")</script></p>
 <p>如图：</p>
 <p><img src="https://gitee.com/dvvss/images/raw/master/imags/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-22%20172354.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-02-22 172354"></p>
 <h3 id="2-Medium-9"><a href="#2-Medium-9" class="headerlink" title="2.Medium"></a>2.Medium</h3><p>代码分析</p>
