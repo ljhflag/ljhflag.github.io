@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/06/14/test/"/>
-    <url>/2024/06/14/test/</url>
-    
-    <content type="html"><![CDATA[<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title></title>
     <link href="/2024/04/21/%E5%AF%92%E5%81%87%E4%BB%BB%E5%8A%A1%20DVWA%E9%9D%B6%E5%9C%BA/"/>
     <url>/2024/04/21/%E5%AF%92%E5%81%87%E4%BB%BB%E5%8A%A1%20DVWA%E9%9D%B6%E5%9C%BA/</url>
