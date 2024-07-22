@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、查子域名及网站的相关的信息有关域名的相关信息查询 1.站长工具ping判断是否拒绝CND 2.IP&#x2F;IPV6查询，服务器地址查询-站长工具ip反查 3.WHOIS 搜索网站相关的注册信息 - Who.is 4.ICP备案查询_APP及小程序备案查询 - 站长工具 5.dns 子域名 备案 域名信息 备案 6.域名注册信息查询 - 腾讯云 7.VirusTotal 这是一个在线网站可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息搜集">
+<meta property="og:url" content="http://example.com/2024/07/22/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/index.html">
+<meta property="og:site_name" content="ljhflag">
+<meta property="og:description" content="一、查子域名及网站的相关的信息有关域名的相关信息查询 1.站长工具ping判断是否拒绝CND 2.IP&#x2F;IPV6查询，服务器地址查询-站长工具ip反查 3.WHOIS 搜索网站相关的注册信息 - Who.is 4.ICP备案查询_APP及小程序备案查询 - 站长工具 5.dns 子域名 备案 域名信息 备案 6.域名注册信息查询 - 腾讯云 7.VirusTotal 这是一个在线网站可以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221504164.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221504971.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505323.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505920.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505919.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505745.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505630.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506410.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506181.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506062.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506539.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506080.png">
+<meta property="og:image" content="c:/Users/35358/Desktop/c9802906-0240-4dd2-8acd-7f7188282f35.png">
+<meta property="article:published_time" content="2024-07-22T06:56:16.000Z">
+<meta property="article:modified_time" content="2024-07-22T07:31:26.412Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透入门">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221504164.png">
+  
+  
+  
+  <title>信息搜集 - ljhflag</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","app_key":"rQPg4V1fSy3hOP8QAyeJnyh8","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ljhflag</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息搜集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-22 14:56" pubdate>
+          2024年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息搜集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一、查子域名及网站的相关的信息"><a href="#一、查子域名及网站的相关的信息" class="headerlink" title="一、查子域名及网站的相关的信息"></a>一、查子域名及网站的相关的信息</h2><p>有关域名的相关信息查询</p>
+<p>1.<a target="_blank" rel="noopener" href="https://ping.chinaz.com/chatgpt.com">站长工具ping判断是否拒绝CND</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://ip.tool.chinaz.com/">IP&#x2F;IPV6查询，服务器地址查询-站长工具</a>ip反查</p>
+<p>3.<a target="_blank" rel="noopener" href="https://who.is/">WHOIS 搜索网站相关的注册信息 - Who.is</a></p>
+<p>4.<a target="_blank" rel="noopener" href="https://icp.chinaz.com/">ICP备案查询_APP及小程序备案查询 - 站长工具</a></p>
+<p>5.<a target="_blank" rel="noopener" href="https://site.ip138.com/www.baid.com/">dns 子域名 备案 域名信息 备案</a></p>
+<p>6.<a target="_blank" rel="noopener" href="https://whois.cloud.tencent.com/domain?domain=chatgpt.com">域名注册信息查询 - 腾讯云</a></p>
+<p>7.<a target="_blank" rel="noopener" href="https://www.virustotal.com/gui/home/upload">VirusTotal</a></p>
+<p>这是一个在线网站可以帮助用户检测恶意软件、病毒和其他安全威胁。它通过对文件、URL、IP地址等进行扫描和分析来提供安全性报告</p>
+<p>在信息搜集的过程中我们主要是要使用这个工具有一个url或者ip的网络图其中这个域名的子域名还有相关备案信息、SSL、TLS证书，相关联文件，exe程序……</p>
+<p>这个分析网站挺不错的</p>
+<h2 id="二、Google语法"><a href="#二、Google语法" class="headerlink" title="二、Google语法"></a>二、Google语法</h2><h3 id="1-基础（不必理会）"><a href="#1-基础（不必理会）" class="headerlink" title="1.基础（不必理会）"></a>1.基础（不必理会）</h3><p>Google搜索引擎</p>
+<p>Index of&#x2F;　　使用它可以直接进入网站首页下的所有文件和文件夹中</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.cnblogs.com<span class="hljs-regexp">/Index`` of/</span><br></code></pre></td></tr></table></figure>
+
+<p>intext:　　将返回所有在网页正文部分包含关键词的网页</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">intext:<span class="hljs-string">&quot;Python 教程&quot;</span> site:<span class="hljs-string">``</span>cnblogs.com<br></code></pre></td></tr></table></figure>
+
+<p>intitle:　　将返回所有网页标题中包含关键词的网页</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">intitle:<span class="hljs-string">&quot;Python 教程&quot;</span> site:<span class="hljs-string">``</span>cnblogs.com<br></code></pre></td></tr></table></figure>
+
+<p>cache:　　搜索google里关于某些内容的缓存</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">cache</span>:<span class="hljs-string">``</span>www.csdn.net<br></code></pre></td></tr></table></figure>
+
+<p>define:　　搜索某个词语的定义</p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs puppet"><span class="hljs-keyword">define</span>:<span class="hljs-section">API</span><br></code></pre></td></tr></table></figure>
+
+<p>filetype:　　搜索指定的文件类型，如：.bak，.mdb，.inc等</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">filetype</span>:pdf site:``cnblogs.<span class="hljs-keyword">com</span><br></code></pre></td></tr></table></figure>
+
+<p>info:　　查找指定站点的一些基本信息</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">info:<span class="hljs-string">``</span>www.csdn.net<br></code></pre></td></tr></table></figure>
+
+<p>inurl:　　URL中包含指定字符的网页</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">inur<span class="hljs-variable">l:java</span> site:``cnblogs.<span class="hljs-keyword">com</span><br></code></pre></td></tr></table></figure>
+
+<p>Link:　　搜索所有和指定站点做了链接的URL</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">link</span>:<span class="hljs-string">``</span>cnblogs.com<br></code></pre></td></tr></table></figure>
+
+<p>site:　     搜索某个特定网站中的内容</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">site:<span class="hljs-string">``</span>cnblogs.com<span class="hljs-string">``</span> Python<br></code></pre></td></tr></table></figure>
+
+<p>+　　把google可能忽略的字列如查询范围。</p>
+<p>​    Python +教程</p>
+<p>​    这个搜索指令会确保搜索结果中必须包含“教程”这个词</p>
+<p>​    </p>
+<p>​    </p>
+<p>-　　作用： 排除包含指定词的结果。</p>
+<p>​    例子：</p>
+<p>​    新加坡 -旅游</p>
+<p>​    这个搜索指令会返回与新加坡相关的结果，但排除包含“旅游”这个词的页       面。</p>
+<p>​    </p>
+<p>​    </p>
+<p>~　　搜索包括同义词的结果  ~开发</p>
+<p>​    这个搜索指令会返回包含“开发”及其同义词的结果，例如“编程”、“建设”       等</p>
+<p>​    </p>
+<p>​    </p>
+<p>.　　单一字符通配符，匹配一个字符。</p>
+<p>​    c.t</p>
+<p>​    这个搜索指令会匹配包含“c.t”模式的词，例如“cat”、“cut”等。</p>
+<p>​    </p>
+<p>​    </p>
+<p>*　 多字符通配符，匹配多个字符</p>
+<p>​    开发*</p>
+<p>​    这个搜索指令会匹配以“开发”开头的词或短语，例如“开发人员”、“开发工     具”、“开发环境”等</p>
+<p>​    </p>
+<p>​    </p>
+<p>“”  精确查询，搜索完全匹配的短语</p>
+<p>​    “Python 编程”</p>
+<p>​    这个搜索指令会返回包含完全匹配“Python 编程”短语的页面，而不是单独    包含“Python”和“编程”的页面。</p>
+<h3 id="2-重要（记忆）"><a href="#2-重要（记忆）" class="headerlink" title="2.重要（记忆）"></a>2.重要（记忆）</h3><h4 id="（1）搜索网站的管理后台："><a href="#（1）搜索网站的管理后台：" class="headerlink" title="（1）搜索网站的管理后台："></a>（1）搜索网站的管理后台：</h4><p>(没必要去搜索像以下类似百度的搜索网站搜了也是白搜)</p>
+<p>在搜索框中输入：</p>
+<p>site:baidu.com intext: 管理 | 后台 | 后台管 </p>
+<p>理 | 登陆 | 登录 | 用户名 | 密码 | 系统 | 账 </p>
+<p>号 | login | system </p>
+<p>（以上是用来搜索一个网站的正文中是否包含有关键字）</p>
+<p>site:baidu.com inurl:login | admin | manage | manager | admin_login | system | backend</p>
+<p>（以上是用来找在与这个顶级域名相关的且具有关键词的url）   </p>
+<p>site:baidu.com intitle: 管理 | 后台 | 后台管 </p>
+<p>理 | 登陆 | 登录 </p>
+<p>（以上是用来找在标题中有关键字的网站）</p>
+<h4 id="（2）寻找具有文件上传功能的页面（尝试实现文件上传漏洞）"><a href="#（2）寻找具有文件上传功能的页面（尝试实现文件上传漏洞）" class="headerlink" title="（2）寻找具有文件上传功能的页面（尝试实现文件上传漏洞）"></a>（2）寻找具有文件上传功能的页面（尝试实现文件上传漏洞）</h4><p>site:baidu.com inurl:file | upload</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221504164.png" srcset="/img/loading.gif" lazyload alt="5f78430f-55e9-481b-88c4-61706a095c07"></p>
+<h4 id="（3）寻找注入口"><a href="#（3）寻找注入口" class="headerlink" title="（3）寻找注入口"></a>（3）寻找注入口</h4><p>site:target.com inurl:php?id&#x3D; | inurl:asp?id&#x3D; | inurl:aspx?id&#x3D; </p>
+<p>（在实际操作中也可以试一试其他的常用参数）</p>
+<h4 id="（3）找目录可能包含敏感文件"><a href="#（3）找目录可能包含敏感文件" class="headerlink" title="（3）找目录可能包含敏感文件"></a>（3）找目录可能包含敏感文件</h4><p>site:baidu.com intitle:index of </p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221504971.png" srcset="/img/loading.gif" lazyload alt="0dad4db1-69f2-4071-905e-31f7c9dd279f"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505323.png" srcset="/img/loading.gif" lazyload alt="53beee50-538a-4682-a5e5-b06256b20638"></p>
+<p>该语法用于搜索页面标题中包含“index of”的页面，通常这些页面是公开的目录列表页面，可能包含敏感文件。</p>
+<h4 id="（4）SQl报错信息"><a href="#（4）SQl报错信息" class="headerlink" title="（4）SQl报错信息"></a>（4）SQl报错信息</h4><p>site:baidu.com intext:”sql syntax near” | </p>
+<p>intext:”syntax error has occurred” | </p>
+<p>intext:” incorrect syntax near” | </p>
+<p>intext:”unexpected end of SQL command” | </p>
+<p>intext:”Warning: mysql_connect()” |</p>
+<p>intext:”Warning: mysql_query()” | </p>
+<p>intext:”Warning: pg_connect()” </p>
+<p>查报错信息可能在报错信息中含有有关数据库结构还有版本的敏感信息</p>
+<h4 id="（5）phpinfo"><a href="#（5）phpinfo" class="headerlink" title="（5）phpinfo"></a>（5）phpinfo</h4><p>site:baidu.com ext:php intitle:phpinfo </p>
+<p>（一般的网页是禁用phpinfo的但是可以试一下）</p>
+<h4 id="（6）社会工程学"><a href="#（6）社会工程学" class="headerlink" title="（6）社会工程学"></a>（6）社会工程学</h4><p>site:csdn.com intitle:密码</p>
+<p>（该语法用于搜索包含账号、密码等敏感信息的页面，通常这些页面可能存在信息泄露问题）</p>
+<h4 id="相关的搜索网站"><a href="#相关的搜索网站" class="headerlink" title="相关的搜索网站"></a>相关的搜索网站</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/T0nmap/p/6aba4eadedfaeec4986056826cb32721.html">https://www.cnblogs.com/T0nmap/p/6aba4eadedfaeec4986056826cb32721.html</a></p>
+<p>（以上是一个含有几个重要的搜索引擎的网站建议看一下）</p>
+<h3 id="3-搜索助手"><a href="#3-搜索助手" class="headerlink" title="3.搜索助手"></a>3.搜索助手</h3><p><a target="_blank" rel="noopener" href="https://dorks.faisalahmed.me/">漏洞赏金助手</a></p>
+<h2 id="三、查找真实ip"><a href="#三、查找真实ip" class="headerlink" title="三、查找真实ip"></a>三、查找真实ip</h2><h3 id="1-海外ping"><a href="#1-海外ping" class="headerlink" title="1.海外ping"></a>1.海外ping</h3><p>海外ping查询：<a target="_blank" rel="noopener" href="https://tools.ipip.net/newping.php">https://tools.ipip.net/newping.php</a></p>
+<p>从国外的服务器ping的原因：（1）绕过国内的cdn（2）避免本地的网络限制【一般直接在国内直接ping的话因为有cdn所以大概率是没有办法ping到服务器的真实ip的】</p>
+<h3 id="2-域名解析历史"><a href="#2-域名解析历史" class="headerlink" title="2.域名解析历史"></a>2.域名解析历史</h3><p>DNS：<a target="_blank" rel="noopener" href="https://site.ip138.com/www.baid.com/">https://site.ip138.com/www.baid.com/</a></p>
+<p>通过找一个域名的dns解析历史可以找到曾经暴露过的真实IP</p>
+<h3 id="3-通过cc攻击得到真实ping"><a href="#3-通过cc攻击得到真实ping" class="headerlink" title="3.通过cc攻击得到真实ping"></a>3.通过cc攻击得到真实ping</h3><p>cc攻击靠的是伪装成合法用户来对于目标网站进行大量访问 </p>
+<p>这个攻击会消耗cdn资源从而有可能会访问到一个网站服务器的真实ip</p>
+<h2 id="四、资产搜索引擎"><a href="#四、资产搜索引擎" class="headerlink" title="四、资产搜索引擎"></a>四、资产搜索引擎</h2><p>一个用于解决各种资产搜索引擎语法的脚本：<a target="_blank" rel="noopener" href="https://github.com/ChinaRan0/Asset-syntax-conversion">https://github.com/ChinaRan0/Asset-syntax-conversion</a></p>
+<h3 id="1-360quake"><a href="#1-360quake" class="headerlink" title="1.360quake"></a>1.360quake</h3><p><a target="_blank" rel="noopener" href="https://quake.360.net/quake/#/searchResult?searchVal=%E7%99%BE%E5%BA%A6&selectIndex=quake_service&latest=true">https://quake.360.net/quake/#/searchResult?searchVal=%E7%99%BE%E5%BA%A6&amp;selectIndex=quake_service&amp;latest=true</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505920.png" srcset="/img/loading.gif" lazyload alt="1fb991be-b904-4824-b60c-0fb2ca099d57"></p>
+<h3 id="2-Fofa"><a href="#2-Fofa" class="headerlink" title="2.Fofa"></a>2.Fofa</h3><p><a target="_blank" rel="noopener" href="https://fofa.info/">https://fofa.info/</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505919.png" srcset="/img/loading.gif" lazyload alt="5a72adbc-b002-474c-ae2d-f3156158c2c7"></p>
+<p>Fofa在edusrc收集中着重收集C段资产 </p>
+<p>title&#x3D;”beijing” </p>
+<p>header&#x3D;”elastic” </p>
+<p>body&#x3D;”网络空间测绘” </p>
+<p>fid&#x3D;”sSXXGNUO2FefBTcCLIT&#x2F;2Q&#x3D;&#x3D;” </p>
+<p>domain&#x3D;”qq.com” </p>
+<p>icp&#x3D;”京ICP证030173号” </p>
+<p>js_name&#x3D;”js&#x2F;jquery.js” </p>
+<p>js_md5&#x3D;”82ac3f14327a8b7ba49baa208d4eaa15” </p>
+<p>icon_hash&#x3D;”-247388890” </p>
+<p>ip&#x3D;”220.181.111.1&#x2F;24” </p>
+<p>country&#x3D;”CN” </p>
+<p>cert&#x3D;”baidu”</p>
+<p><strong>局域网（私有网络）地址</strong>：</p>
+<ul>
+<li>A类：10.0.0.0 到 10.255.255.255</li>
+<li>B类：172.16.0.0 到 172.31.255.255</li>
+<li>C类：192.168.0.0 到 192.168.255.255</li>
+</ul>
+<p><strong>公网（公共网络）地址</strong>：</p>
+<ul>
+<li>A类：1.0.0.0 到 9.255.255.255 和 11.0.0.0 到 126.255.255.255</li>
+<li>B类：128.0.0.0 到 172.15.255.255 和 172.32.0.0 到 191.255.255.255</li>
+<li>C类：192.0.0.0 到 192.167.255.255 和 192.169.0.0 到 223.255.255.255</li>
+</ul>
+<h3 id="3-奇安信Hunter"><a href="#3-奇安信Hunter" class="headerlink" title="3.奇安信Hunter"></a>3.奇安信Hunter</h3><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505745.png" srcset="/img/loading.gif" lazyload alt="04fda72d-5965-47de-b588-12615a60c3ee"></p>
+<h2 id="五、各种搜索引擎汇总"><a href="#五、各种搜索引擎汇总" class="headerlink" title="五、各种搜索引擎汇总"></a>五、各种搜索引擎汇总</h2><p>shodan.io傻蛋平台 -常用 </p>
+<p>google.com -常用 </p>
+<p>wigle.net WIFI定位 </p>
+<p>grep.app 50 万个 git 存储库 </p>
+<p>censys.io 类似于傻蛋平台 -常用 </p>
+<p>hunter.io 查找邮箱 -常用 </p>
+<p>fofa.info FOFA -常用 </p>
+<p>zoomeye.org 钟馗之眼 -常用 </p>
+<p>leakix.net 威胁情报 </p>
+<p>searchcode.com 代码搜索 </p>
+<p>urlscan.io 威胁情报 </p>
+<p>publicwww. com代码搜索 </p>
+<p>crt.sh 证书搜索 -常用 </p>
+<p>vulners.com 漏洞库 </p>
+<p>pulsedive.com 威胁情报</p>
+<h2 id="六、指纹识别-CMS识别"><a href="#六、指纹识别-CMS识别" class="headerlink" title="六、指纹识别 CMS识别"></a>六、指纹识别 CMS识别</h2><p>小工具：TideFinger <a target="_blank" rel="noopener" href="https://github.com/TideSec/TideFinger">https://github.com/TideSec/TideFinger</a> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221505630.png" srcset="/img/loading.gif" lazyload alt="d5d9a800-b724-4bd9-b1d4-3472f78a6af6"></p>
+<p>在线潮汐指纹识别：<a target="_blank" rel="noopener" href="http://finger.tidesec.com/">http://finger.tidesec.com/</a></p>
+<p>wappalyzer：一个比较方便快捷的浏览器扩展</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506410.png" srcset="/img/loading.gif" lazyload alt="9abe9c70-c44c-4612-b1a1-0a8af89dcbbc"></p>
+<h2 id="七、JS信息搜集"><a href="#七、JS信息搜集" class="headerlink" title="七、JS信息搜集"></a>七、JS信息搜集</h2><p>因为在js代码中也有可能存在敏感信息</p>
+<p>JSFinderPlus：</p>
+<p>JSFinder是一款用作快速在网站的js文件中提取URL，子域名的工具。该工具在JSFinder上进行了增强，主要有：</p>
+<ul>
+<li>多线程爬虫，支持深度爬取（爬取提取出的所有URL）</li>
+<li>常见高危目录爆破</li>
+<li>敏感信息（手机号、身份证号码等）识别</li>
+<li>生成html报告，方便验证</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506181.png" srcset="/img/loading.gif" lazyload alt="7c63e3df-abab-4bd1-acf4-91931b19ccd5"></p>
+<h2 id="八、目录扫描"><a href="#八、目录扫描" class="headerlink" title="八、目录扫描"></a>八、目录扫描</h2><p>7kbscan：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute%EF%BC%88%E5%A5%BD%E7%94%A8%EF%BC%89">https://github.com/7kbstorm/7kbscan-WebPathBrute（好用）</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506062.png" srcset="/img/loading.gif" lazyload alt="6afb91c7-6ef0-496f-a838-ed649f470e06"></p>
+<p>dirsearch：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a></p>
+<h2 id="九、信息泄露"><a href="#九、信息泄露" class="headerlink" title="九、信息泄露"></a>九、信息泄露</h2><p> gsil-pro:<a target="_blank" rel="noopener" href="https://github.com/StarLord777/GSIL_PRO">https://github.com/StarLord777/GSIL_PRO</a></p>
+<p>我感觉这个配置起来比gsil更好配一些因为这个工具会把筛选出来的数据给保存到本地（<strong>注意：如果往Windows上装的话一定要改路径 因为这个保存路径默认在linux的root文件夹下</strong>）</p>
+<p>工具展示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506539.png" srcset="/img/loading.gif" lazyload alt="386e2c2f-4676-4025-bb7f-dbe6895c74ea"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202407221506080.png" srcset="/img/loading.gif" lazyload alt="e302f1c3-742d-41ce-b714-5db6dcc1c0d1"></p>
+<p><img src="C:/Users/35358/Desktop/c9802906-0240-4dd2-8acd-7f7188282f35.png" srcset="/img/loading.gif" lazyload alt="c9802906-0240-4dd2-8acd-7f7188282f35"></p>
+<h2 id="十、社会工程学信息收集"><a href="#十、社会工程学信息收集" class="headerlink" title="十、社会工程学信息收集"></a>十、社会工程学信息收集</h2><p> 针对个人：使用社工库查询，钓鱼；</p>
+<p>针对企业：使用企查查，爱企查</p>
+<h2 id="十二、弱口令"><a href="#十二、弱口令" class="headerlink" title="十二、弱口令"></a>十二、弱口令</h2><p><strong>针对有登录框的可以试试弱口令</strong></p>
+<p>工具：超级弱口令检查工具</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B8%97%E9%80%8F%E5%85%A5%E9%97%A8/" class="print-no-link">#渗透入门</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息搜集</div>
+      <div>http://example.com/2024/07/22/信息搜集/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/25/sql%E6%B3%A8%E5%85%A5/" title="sql例题">
+                        <span class="hidden-mobile">sql例题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","appKey":"rQPg4V1fSy3hOP8QAyeJnyh8","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
