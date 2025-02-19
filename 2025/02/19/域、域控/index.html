@@ -16,24 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MSF使用 以及相关的git1.MSF是啥Metasploit Framework(MSF) 是一款开源安全漏洞检测工具，附带数千个已知的软件漏洞，并保持持续更新。Metasploit可以用来信息收集、漏洞探测、漏洞利用等渗透测试的全流程。 [这个工具不是像Ruby那种用来批量漏扫的工具这个工具是在你确定或者怀疑目标系统存在某个CVE或者其他什么漏洞的前提下使用特定模块进行针对] 2.使用方法 进">
+    <meta name="description" content="域、域控一、什么是域，域控 **域(Domain)**：将网络中的多台计算机通过逻辑的方式组织到一起，进行集中管理，这种集中管理的环境称为域。  域控：就是域控制器（Domain Controller，DC)其中每个域中至少有一台域控制器、集中存放整个域的用户账号和安全数据库，安装了活动目录(AD)的主机称为域控制器。   举个最常见的例子：学校的机房中的所有的电脑设备就是一个域，而老师就是通过域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MSF使用以及相关后续部分渗透思路">
-<meta property="og:url" content="http://example.com/2024/11/14/msf%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="域、域控">
+<meta property="og:url" content="http://example.com/2025/02/19/%E5%9F%9F%E3%80%81%E5%9F%9F%E6%8E%A7/index.html">
 <meta property="og:site_name" content="ljhflag">
-<meta property="og:description" content="MSF使用 以及相关的git1.MSF是啥Metasploit Framework(MSF) 是一款开源安全漏洞检测工具，附带数千个已知的软件漏洞，并保持持续更新。Metasploit可以用来信息收集、漏洞探测、漏洞利用等渗透测试的全流程。 [这个工具不是像Ruby那种用来批量漏扫的工具这个工具是在你确定或者怀疑目标系统存在某个CVE或者其他什么漏洞的前提下使用特定模块进行针对] 2.使用方法 进">
+<meta property="og:description" content="域、域控一、什么是域，域控 **域(Domain)**：将网络中的多台计算机通过逻辑的方式组织到一起，进行集中管理，这种集中管理的环境称为域。  域控：就是域控制器（Domain Controller，DC)其中每个域中至少有一台域控制器、集中存放整个域的用户账号和安全数据库，安装了活动目录(AD)的主机称为域控制器。   举个最常见的例子：学校的机房中的所有的电脑设备就是一个域，而老师就是通过域">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411142127304.png">
-<meta property="article:published_time" content="2024-11-14T14:33:26.000Z">
-<meta property="article:modified_time" content="2024-11-14T14:34:48.162Z">
+<meta property="article:published_time" content="2025-02-19T14:27:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T14:40:34.872Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="渗透内网">
+<meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411142127304.png">
   
   
   
-  <title>MSF使用以及相关后续部分渗透思路 - ljhflag</title>
+  <title>域、域控 - ljhflag</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MSF使用以及相关后续部分渗透思路"></span>
+            <span id="subtitle" data-typed-text="域、域控"></span>
           
         </div>
 
@@ -239,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-14 22:33" pubdate>
-          2024年11月14日 晚上
+        <time datetime="2025-02-19 22:27" pubdate>
+          2025年2月19日 晚上
         </time>
       </span>
     
@@ -251,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          677 字
+          2.1k 字
         
       </span>
     
@@ -262,7 +260,7 @@
         
         
         
-          6 分钟
+          18 分钟
         
       </span>
     
@@ -307,34 +305,68 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MSF使用以及相关后续部分渗透思路</h1>
+            <h1 id="seo-header">域、域控</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="MSF使用-以及相关的git"><a href="#MSF使用-以及相关的git" class="headerlink" title="MSF使用 以及相关的git"></a>MSF使用 以及相关的git</h1><h2 id="1-MSF是啥"><a href="#1-MSF是啥" class="headerlink" title="1.MSF是啥"></a>1.MSF是啥</h2><p>Metasploit Framework(MSF) 是一款开源安全漏洞检测工具，附带数千个已知的软件漏洞，并保持<br>持续更新。Metasploit可以用来信息收集、漏洞探测、漏洞利用等渗透测试的全流程。</p>
-<p>[<strong>这个工具不是像Ruby那种用来批量漏扫的工具这个工具是在你确定或者怀疑目标系统存在某个CVE或者其他什么漏洞的前提下使用特定模块进行针对</strong>]</p>
-<h2 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2.使用方法"></a>2.使用方法</h2><ul>
-<li>进入框架： msfconsole</li>
-<li>使用search命令查找相关漏洞：search ms17-010</li>
-<li>使用use进入模块:use exploit&#x2F;windows&#x2F;smb&#x2F;ms17 010eternalblue</li>
-<li>使用info查看模块信息: info</li>
-<li>设置攻击载荷: set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse tcp</li>
-<li>查看模块需要配置的参数: show options</li>
-<li>设置参数:set RHOST192.168.125138 （远程的攻击地址）</li>
-<li>攻击: exploit&#x2F; run</li>
-<li>后渗透阶段<br>  不同的攻击用到的步骤也不一样，这不是一成不变的，需要灵活使用。<br>  我们也可以将攻击代码写入 configure.rc (只要是以.rc结尾的文件)配置文件中，然后使用命令msfconsole r<br>  configure.rc进行自动攻击!</li>
+                <h1 id="域、域控"><a href="#域、域控" class="headerlink" title="域、域控"></a>域、域控</h1><h2 id="一、什么是域，域控"><a href="#一、什么是域，域控" class="headerlink" title="一、什么是域，域控"></a>一、什么是域，域控</h2><ul>
+<li><p>**域(Domain)**：将网络中的多台计算机通过逻辑的方式组织到一起，进行集中管理，这种集中管理的环境称为域。</p>
+</li>
+<li><p><strong>域控</strong>：就是域控制器（Domain Controller，DC)其中每个域中至少有一台域控制器、集中存放整个域的用户账号和安全<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tencentdb-catalog?from_column=20065&from=20065">数据库</a>，安装了活动目录(AD)的主机称为域控制器。</p>
+</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411142127304.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-14 212322"></p>
-<p>进入目标主机的终端后可以git uid获者git system手段来提权  或者ps查看系统  进程</p>
-<p>在这个工具下进入目标主机的终端后getuid <em>#命令可以获取当前用户的信息，可以看到，当我们使用 getsystem进行提权后，用户身材为  NT AUTHORITY\SYSTEM ，这个也就是Windows的系统权限。</em> getsystem <em>#自动提权为系统权限</em></p>
-<h3 id="使用详解："><a href="#使用详解：" class="headerlink" title="使用详解："></a>使用详解：</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45588247/article/details/119614618">https://blog.csdn.net/weixin_45588247/article/details/119614618</a></p>
-<p><strong>MSF还可用来生成Shellcode具体方法现阶段还没里了解[后续可能会更新]可以去上网查查</strong></p>
-<h2 id="Git-UID-和-Git-System-提权"><a href="#Git-UID-和-Git-System-提权" class="headerlink" title="Git UID 和 Git System 提权"></a>Git UID 和 Git System 提权</h2><p>​		在后渗透阶段，<strong>git uid</strong> 和 <strong>git system 提权</strong>通常是指攻击者利用Git相关的配置或漏洞进行权限提升，获得更高的系统权限。具体来说：</p>
+<p>举个最常见的例子：学校的机房中的所有的电脑设备就是一个域，而老师就是通过域控来直接实现教室里所有的电脑的开关机以及软件的的安装这些常规操作；部分规模较大的网吧也是这样</p>
 <ul>
-<li><strong>Git UID 提权</strong>：Git用户在某些情况下，可能具有某些特权权限，攻击者可以通过利用Git的配置文件、Git钩子或环境变量等方式，获取系统的其他用户UID（用户ID）。攻击者可以尝试将Git配置的UID设置为更高权限的用户，例如root用户，从而提升自己的权限。</li>
-<li><strong>Git System 提权</strong>：在某些情况下，Git的配置文件或Git的执行路径可能被恶意修改。攻击者通过Git操作或某些Git命令（如 <code>git commit</code>、<code>git push</code>）可以借此修改系统配置或在某些环境下通过Git的执行机制，利用Git在系统上执行恶意命令，从而获取更高权限。</li>
+<li>**活动目录（Active Directory，AD)**：活动目录是一个目录数据库，存储整个windows网络中对象的相关信息（可以理解为存储了网络中所有资源的快捷方式）。也是一种服务，可对活动目录中数据执行各种操作。</li>
+<li><strong>父域和子域</strong>：出于管理需求，需要在网络中划分多个域。第一个域称为父域，各分部的域称为子域。不同的域之间，信息交互的条目会大大减少，且可以压缩后进行交互，节约带宽。并且域管可以针对各个域，设置不同的安全策略，灵活管理。</li>
+<li>**域树 (Tree)**：域管只能管理本域，如果需要管理其他域，则需要建立信任关系，域树则是指多个域通过建立信任关系组成的集合。同理，多个域树通过建立信任关系组成的集合则称为域林。</li>
+<li>**域名服务器 (DNS)**：用于实现域名和与之对应的IP地址之间相互转换。因为域中的计算机是使用DNS来定位域控和其他服务器的，所以域的名字就是DNS域的名字。（DNS和DC一般在同一台机器上）</li>
 </ul>
+<p><u>注意：大部分在同一个域下的设备是在同一个局域网中的但是在不同局域网中的设备也可以在同一个域中，因为<strong>只要能够指向正确的dns服务器便可以找到域控</strong></u>域控服务器要在公网上</p>
+<h2 id="二、为什么要有域控，域控能够干啥"><a href="#二、为什么要有域控，域控能够干啥" class="headerlink" title="二、为什么要有域控，域控能够干啥"></a>二、为什么要有域控，域控能够干啥</h2><h3 id="集中管理用户和计算机："><a href="#集中管理用户和计算机：" class="headerlink" title="集中管理用户和计算机："></a><strong>集中管理用户和计算机</strong>：</h3><ul>
+<li>身份验证：验证用户登录请求的有效性。</li>
+<li>计算机管理：确保域内计算机的身份有效，按照预定策略进行配置和管理。</li>
+</ul>
+<h3 id="资源共享与访问控制："><a href="#资源共享与访问控制：" class="headerlink" title="资源共享与访问控制："></a><strong>资源共享与访问控制</strong>：</h3><ul>
+<li>共享资源管理：通过 Active Directory 管理共享资源，如打印机、文件服务器。</li>
+<li>权限控制：精细化设置访问权限，确保用户只能访问授权的资源。</li>
+</ul>
+<h3 id="组策略（GPO）管理："><a href="#组策略（GPO）管理：" class="headerlink" title="组策略（GPO）管理："></a><strong>组策略（GPO）管理</strong>：</h3><ul>
+<li>集中配置管理：统一配置计算机和用户的设置，保证一致性。</li>
+<li>自动化管理：批量配置和管理网络中所有计算机。</li>
+</ul>
+<h3 id="身份验证与单点登录（SSO）："><a href="#身份验证与单点登录（SSO）：" class="headerlink" title="身份验证与单点登录（SSO）："></a><strong>身份验证与单点登录（SSO）</strong>：</h3><ul>
+<li>单点登录：用户一次登录即可访问所有资源。</li>
+<li>Kerberos 身份验证：确保身份验证的安全性，防止中间人攻击。</li>
+</ul>
+<h3 id="集中管理的安全性："><a href="#集中管理的安全性：" class="headerlink" title="集中管理的安全性："></a><strong>集中管理的安全性</strong>：</h3><ul>
+<li>审计与监控：记录用户和计算机的活动，进行安全监控。</li>
+<li>强制安全策略：执行密码复杂度要求、定期更换密码、锁定账户等安全策略。</li>
+</ul>
+<h3 id="跨地域、跨网络的管理："><a href="#跨地域、跨网络的管理：" class="headerlink" title="跨地域、跨网络的管理："></a><strong>跨地域、跨网络的管理</strong>：</h3><ul>
+<li>跨地域管理：多个域控制器同步工作，确保分支机构的一致性。</li>
+<li>远程访问：支持 VPN 或其他方式的远程安全登录。</li>
+</ul>
+<h3 id="组织和群组管理："><a href="#组织和群组管理：" class="headerlink" title="组织和群组管理："></a><strong>组织和群组管理</strong>：</h3><ul>
+<li>组织单位（OU）：根据部门或职能划分用户和计算机，实施组策略。</li>
+<li>群组管理：将用户归类为不同组，并为组分配权限。</li>
+</ul>
+<h3 id="域内计算机的自动化管理："><a href="#域内计算机的自动化管理：" class="headerlink" title="域内计算机的自动化管理："></a><strong>域内计算机的自动化管理</strong>：</h3><ul>
+<li>计算机加入域：新计算机自动继承域控制器的配置和权限。</li>
+<li>远程管理：远程进行计算机管理，如故障诊断、更新等。</li>
+</ul>
+<h3 id="灾难恢复与备份："><a href="#灾难恢复与备份：" class="headerlink" title="灾难恢复与备份："></a><strong>灾难恢复与备份</strong>：</h3><ul>
+<li>备份与恢复：定期备份 Active Directory 数据库，灾难恢复时还原用户、计算机账户及策略。</li>
+<li>容错机制：多个备用域控制器保证高可用性。</li>
+</ul>
+<h3 id="其他功能："><a href="#其他功能：" class="headerlink" title="其他功能："></a><strong>其他功能</strong>：</h3><ul>
+<li>DNS 服务：充当 DNS 服务器，解析域内计算机的域名。</li>
+<li>时间同步：确保所有域内计算机时间同步，确保身份验证和日志管理的准确性。</li>
+</ul>
+<h2 id="三、啥叫拿到域控"><a href="#三、啥叫拿到域控" class="headerlink" title="三、啥叫拿到域控"></a>三、啥叫拿到域控</h2><p>拿到域控” 这个表达通常是指攻击者成功获取了 <strong>域控制器</strong>（Domain Controller, <strong>DC</strong>）的 <strong>控制权限</strong>，意味着攻击者已经获得了 <strong>Active Directory</strong> 的控制权，能够对整个网络中的计算机、用户、资源、权限等进行操作。</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">为什么<span class="hljs-string">&quot;拿到域控&quot;</span>这么重要？<br>完全控制网络： 域控是整个网络安全和管理的核心，控制了 <span class="hljs-built_in">Active</span> <span class="hljs-built_in">Directory</span>。<span class="hljs-built_in">Active</span> <span class="hljs-built_in">Directory</span> 中存储着网络中所有用户、计算机、组、权限等信息。攻击者一旦控制了域控，就相当于可以在网络中执行几乎任何操作，例如：<br><br>创建、修改、删除用户和组账户。<br>修改用户的权限，可能包括将管理员权限授予自己。<br>控制网络中的计算机，甚至强制其加入到攻击者的控制下。<br>修改安全策略、访问控制列表（<span class="hljs-variable">ACLs</span>）、组策略等，进而影响整个域内的安全性。<br>获取管理员权限： 域控的 管理员账户（特别是 域管理员账户）具有对网络所有计算机的完全控制权限。攻击者一旦获得 域管理员 或 <span class="hljs-variable">Enterprise</span> <span class="hljs-variable">Admin</span> 权限，就能够对所有域成员计算机和服务器进行任意操作，包括：<br>安装恶意软件或后门。<br>获取所有用户的密码哈希值。<br>进一步提升权限，控制整个组织的 <span class="hljs-variable">IT</span> 环境。<br>攻击持久性： 一旦控制了域控，攻击者可以长期在网络内保持隐蔽访问：<br>通过创建新的管理员账户或修改现有账户，确保自己在系统中保持活动。<br>攻击者可以利用域控维护后门，即使其他安全措施被加强，依然能持续保持对网络的访问。<br>盗取凭证： 域控上存储着大量的用户和计算机的 凭证（用户名和密码哈希）。攻击者通过拿到域控，可以通过 <span class="hljs-variable">hashdump</span> 等工具提取出这些凭证，从而尝试进行 横向移动攻击，即从一个受控系统跳跃到其他计算机，获取更多的访问权限。<br>执行横向渗透和数据窃取：<br>拿到域控后，攻击者可以通过 <span class="hljs-variable">Kerberos</span> 或其他协议，利用已经获取的票据或凭证，执行横向渗透攻击，进而侵入更多的目标系统。<br>还可以窃取机密数据，获取公司的敏感信息，如财务数据、客户信息等。<br><br><br>常见的“拿到域控”方式<br>利用漏洞攻击： 攻击者通过利用操作系统或 <span class="hljs-built_in">Active</span> <span class="hljs-built_in">Directory</span> 中的漏洞（例如 <span class="hljs-variable">MS17</span><span class="hljs-operator">-</span><span class="hljs-number">010</span>，即 <span class="hljs-variable">EternalBlue</span> 漏洞）来渗透目标网络，并最终获取域控权限。<br>凭证攻击：<br>通过 钓鱼 或 暴力破解 获取域管理员的凭证。<br>使用 <span class="hljs-variable">Pass</span><span class="hljs-operator">-</span><span class="hljs-variable">the</span><span class="hljs-operator">-</span><span class="hljs-built_in">Hash</span> 或 <span class="hljs-variable">Pass</span><span class="hljs-operator">-</span><span class="hljs-variable">the</span><span class="hljs-operator">-</span><span class="hljs-variable">Ticket</span> 技术直接利用窃取的哈希值或票据访问域控。<br>社会工程学攻击： 通过社会工程学手段骗取管理员的密码，或者诱导用户执行恶意代码，从而获得访问权限。<br>滥用现有权限： 如果攻击者已经在某台计算机上拥有 高权限（如本地管理员权限），他们可以通过 提权 来获得域控的访问权限。常见的方法有 <span class="hljs-variable">UAC</span> 绕过、利用漏洞 等。<br>物理接触： 在某些极端情况下，攻击者可能通过物理接触域控服务器来获取控制权，例如直接操作服务器或者通过接入服务器的管理接口（如 <span class="hljs-variable">iLO</span>、<span class="hljs-variable">DRAC</span> 等远程管理工具）来控制服务器。<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -347,7 +379,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%97%E9%80%8F%E5%86%85%E7%BD%91/" class="print-no-link">#渗透内网</a>
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
       
     </div>
   
@@ -359,8 +391,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MSF使用以及相关后续部分渗透思路</div>
-      <div>http://example.com/2024/11/14/msf使用/</div>
+      <div>域、域控</div>
+      <div>http://example.com/2025/02/19/域、域控/</div>
     </div>
     <div class="license-meta">
       
@@ -372,7 +404,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月14日</div>
+          <div>2025年2月19日</div>
         </div>
       
       
@@ -404,18 +436,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/14/CVE-2021-44228%E5%A4%8D%E7%8E%B0/" title="CVE-2021-44228复现">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CVE-2021-44228复现</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/02/%E4%BF%A1%E6%81%AF%E6%89%93%E7%82%B9/" title="信息打点">
-                        <span class="hidden-mobile">信息打点</span>
+                      <a href="/2025/02/19/%E7%A5%A8%E6%8D%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/" title="票据及其相关的工作原理">
+                        <span class="hidden-mobile">票据及其相关的工作原理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

